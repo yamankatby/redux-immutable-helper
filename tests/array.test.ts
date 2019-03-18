@@ -1,4 +1,4 @@
-import { array } from '../';
+import { array } from '../src';
 
 test('Array Push Method', () => {
   const arrayBefore = [1, 2, 3];
