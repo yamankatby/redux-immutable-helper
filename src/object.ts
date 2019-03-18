@@ -1,13 +1,13 @@
-const object = <T>(object: T) => {
-	const update = (key: string, newValue: any): T => {
-		const updatedObject = object;
-		// @ts-ignore
-		updatedObject[key] = newValue;
+const object = <T>(target: T) => {
+  const update = (key: string, newValue: any): T => {
+    const updatedObject = target;
+    // @ts-ignore
+    updatedObject[key] = newValue;
 
-		return updatedObject;
-	};
+    return updatedObject;
+  };
 
-	return { update };
+  return { update };
 };
 
 export default object;
