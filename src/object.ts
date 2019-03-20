@@ -1,10 +1,10 @@
 const object = <T>(target: T) => {
   const update = (key: string, newValue: any): T => {
-    const updatedObject = target;
+    const updatedObject = {};
     // @ts-ignore
     updatedObject[key] = newValue;
 
-    return updatedObject;
+    return { ...target, ...updatedObject };
   };
 
   return { update };
