@@ -16,42 +16,127 @@ yarn add redux-immutable-helper
 ```
 
 ### Usage
-####array(target).push(...elements);
+array(target).push(...elements);
 ```js
 import { array } from 'redux-immutable-helper';
 
-const numbers = [0, 1, 2];
-const newNumbersArray = array(todoList).push(3); // output => [0, 1, 2, 3];
+const animals = ['🐼', '🐶', '🐑'];
+const newAnimalsArray = array(animals).push('🐈'); // output => ['🐼', '🐶', '🐑', '🐈'];
 ```
 
-:dress:
-
-######Also you can pass multiple element:  
+Also you can pass multiple element:  
 
 ```js
-const numbers = [0, 1, 2];
-const newNumbersArray = array(numbers).push(3, 4, 5); // output => [0, 1, 2, 3, 4, 5];
+const animals = ['🐼', '🐶', '🐑'];
+const newAnimalsArray = array(animals).push('🐈', '🐓', '🐇'); // output => ['🐼', '🐶', '🐑', '🐈', '🐓', '🐇'];
 ```
-####array(target).unshift(...elements);
-
-```js
-import { array } from 'redux-immutable-helper';
-
-const characters = ['b', 'c', 'd'];
-const newCharactersArray = array(characters).unshift('a'); // output => ['a', 'b', 'c', 'd'];
-```
-
-######Also you can pass multiple element:
-
-```js
-const characters = ['b', 'c', 'd'];
-const newCharactersArray = array(characters).unshift('x', 'a'); // output => ['x', 'a', 'b', 'c', 'd'];
-```
-####array(target).pop(...elements);
+array(target).unshift(...elements);
 
 ```js
 import { array } from 'redux-immutable-helper';
 
-const clothes = ['🧥', '👗', '👠'];
-const newClothesArray = array(clothes).pop(); // output => ['🧥', '👗'];
+const fastFood = ['🍗', '🍤', '🍟'];
+const newFastFoodArray = array(fastFood).unshift('🍔'); // output => ['🍔', '🍗', '🍤', '🍟'];
+```
+
+Also you can pass multiple element:
+
+```js
+const fastFood = ['🍗', '🍤', '🍟'];
+const newFastFoodArray = array(fastFood).unshift('🍔', '🍕', '🍣'); // output => ['🍔', '🍕', '🍣', '🍗', '🍤', '🍟'];
+```
+array(target).pop(count);
+
+```js
+import { array } from 'redux-immutable-helper';
+
+const clothes = ['👗', '👜', '👠'];
+const newClothesArray = array(clothes).pop(); // output => ['👗', '👜'];
+```
+
+Also you can pass it a count
+
+```js
+const clothes = ['👗', '👜', '👠'];
+const newClothesArray = array(clothes).pop(2); // output => ['👗'];
+```
+
+array(target).shift(count);
+
+```js
+import { array } from 'redux-immutable-helper';
+
+const flowers = ['🌸', '🌹', '🌻'];
+const newFlowersArray = array(flowers).shift(); // output => ['🌹', '🌻'];
+```
+
+Also you can pass it a count
+
+```js
+const flowers = ['🌸', '🌹', '🌻'];
+const newFlowersArray = array(flowers).shift(2); // output => ['🌹'];
+```
+
+array(target).replace(expression, element);
+
+```js
+import { array } from 'redux-immutable-helper';
+
+const fruits = ['🍎', '🍉', '🍓'];
+const newFruitsArray = array(fruits).replace(0, '🍐'); // output => ['🍐', '🍉', '🍓'];
+```
+
+Also you can it a expression
+
+```js
+const fruits = ['🍎', '🍉', '🍓'];
+const newFruitsArray = array(fruits).replace((fruit) => fruit === '🍎', '🍐'); // output => ['🍐', '🍉', '🍓'];
+```
+
+array(target).insertAfter(expression, element);
+
+```js
+import { array } from 'redux-immutable-helper';
+
+const shoes = ['👡', '👠', '👞'];
+const newShoesArray = array(shoes).insertAfter(0, '👢'); // output => ['👡', '👢', '👠', '👞'];
+```
+
+Also you can it a expression
+
+```js
+const shoes = ['👡', '👠', '👞'];
+const newShoesArray = array(shoes).insertAfter((shoe) => shoe === '👡', '👢'); // output => ['👡', '👢', '👠', '👞'];
+```
+
+array(target).insertBefore(expression, element);
+
+```js
+import { array } from 'redux-immutable-helper';
+
+const balls = ['🏀', '🎾', '⚽️'];
+const newBallsArray = array(balls).insertBefore(1, '🎱'); // output => ['🏀', '🎱', '🎾', '⚽'];
+```
+
+Also you can it a expression
+
+```js
+const balls = ['🏀', '🎾', '⚽️'];
+const newBallsArray = array(balls).insertBefore((ball) => ball === '🎾', '🎱'); // output => ['🏀', '🎱', '🎾', '⚽'];
+```
+
+array(target).remove(expression);
+
+```js
+import { array } from 'redux-immutable-helper';
+
+const cars = ['🚙', '🚗', '🚕'];
+const newCartsArray = array(cars).remove(1); // output => ['🚙', '🚕'];
+```
+
+Also you can it a expression
+
+```js
+const cars = ['🚙', '🚗', '🚕'];
+const newCartsArray = array(cars).remove((car) => car === '🚗'); // output => ['🚙', '🚕'];
 ```
