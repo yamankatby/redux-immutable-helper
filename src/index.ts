@@ -1,4 +1,7 @@
 import array from './array';
-import object from './object';
 
-export { array, object };
+export { array };
+
+const clothes = ['🧥', '👗', '👠'];
+const newClothesArray = array(clothes).pop(); // output => ['🧥', '👗'];
+

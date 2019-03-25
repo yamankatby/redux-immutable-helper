@@ -1,6 +1,6 @@
 import { array } from '../src';
 
-test('Array Push Method', () => {
+test('array.push()', () => {
   const arrayBefore = [1, 2, 3];
   const arrayAfter = [1, 2, 3, 4, 5];
 
@@ -11,7 +11,7 @@ test('Array Push Method', () => {
   ).toEqual(arrayAfter);
 });
 
-test('Array Unshift Method', () => {
+test('array.unshift()', () => {
   const arrayBefore = [1, 2, 3];
   const arrayAfter = [0, 1, 2, 3];
 
@@ -22,7 +22,7 @@ test('Array Unshift Method', () => {
   ).toEqual(arrayAfter);
 });
 
-test('Array Pop Method', () => {
+test('array.pop()', () => {
   const arrayBefore = [1, 2, 3];
   const arrayAfter = [1, 2];
 
@@ -33,7 +33,7 @@ test('Array Pop Method', () => {
   ).toEqual(arrayAfter);
 });
 
-test('Array Shift Method', () => {
+test('array.shift()', () => {
   const arrayBefore = [1, 2, 3];
   const arrayAfter = [2, 3];
 
@@ -44,7 +44,7 @@ test('Array Shift Method', () => {
   ).toEqual(arrayAfter);
 });
 
-test('Array Concat Method', () => {
+test('array.concat()', () => {
   const arrayBefore = [1, 2, 3];
   const arrayAfter = [1, 2, 3, 4, 5, 6];
   const concatArray = [4, 5, 6];
@@ -57,7 +57,7 @@ test('Array Concat Method', () => {
   ).toEqual(arrayAfter);
 });
 
-test('Array Replace Method', () => {
+test('array.replace()', () => {
   const arrayBefore = [1, 2, 3];
   const arrayAfter = [1, 2, 4];
 
@@ -68,7 +68,7 @@ test('Array Replace Method', () => {
   ).toEqual(arrayAfter);
 });
 
-test('Array Remove Method', () => {
+test('array.remove()', () => {
   const arrayBefore = [1, 2, 3];
   const arrayAfter = [1, 2];
 
@@ -76,5 +76,27 @@ test('Array Remove Method', () => {
 
   expect(
     array(arrayBefore).remove((number) => number === 3),
+  ).toEqual(arrayAfter);
+});
+
+test('array.insertAfter()', () => {
+  const arrayBefore = [1, 2, 4];
+  const arrayAfter = [1, 2, 3, 4];
+
+  Object.freeze(arrayBefore);
+
+  expect(
+    array(arrayBefore).insertAfter((number) => number === 2, 3),
+  ).toEqual(arrayAfter);
+});
+
+test('array.insertBefore()', () => {
+  const arrayBefore = [1, 2, 4];
+  const arrayAfter = [1, 2, 3, 4];
+
+  Object.freeze(arrayBefore);
+
+  expect(
+    array(arrayBefore).insertBefore((number) => number === 4, 3),
   ).toEqual(arrayAfter);
 });
