@@ -1,3 +1,5 @@
+// created with ❤ by Yaman Katby at 25 Mar 2019.
+
 export type Expression<T> = number | ((element: T) => boolean);
 
 const findIndex = <T>(target: T[], expression: Expression<T>): number => {
