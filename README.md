@@ -104,7 +104,7 @@ This is a list of the methods that you can access by calling `array()` function 
 | `insertBefore()` | Adds an element to the targeted array before the passed index.       | expression: number | ((element) => boolean), element: any | array([1, 3]).insertBefore(1, 2);  |
 | `remove()`       | Removes an element from the passed index.                            | expression: number | ((element) => boolean)               | array([1, 2, 3]).remove(2);        |
 
-##push
+##Push
 ```js
 import { array } from 'redux-immutable-helper';
 
