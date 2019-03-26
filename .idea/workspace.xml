@@ -19,8 +19,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="84">
-                <caret line="199" column="1" selection-start-line="199" selection-start-column="1" selection-end-line="199" selection-end-column="1" />
+              <first_editor relative-caret-position="495">
+                <caret line="216" column="10" selection-start-line="216" selection-start-column="10" selection-end-line="216" selection-end-column="10" />
               </first_editor>
               <second_editor />
             </state>
@@ -206,7 +206,7 @@
       <workItem from="1553255262642" duration="2341000" />
       <workItem from="1553342165795" duration="4233000" />
       <workItem from="1553520622486" duration="4663000" />
-      <workItem from="1553528664483" duration="5266000" />
+      <workItem from="1553528664483" duration="5558000" />
     </task>
     <servers />
   </component>
@@ -222,7 +222,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28958000" />
+    <option name="totallyTimeSpent" value="29250000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1370" extended-state="6" />
@@ -374,8 +374,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="84">
-            <caret line="199" column="1" selection-start-line="199" selection-start-column="1" selection-end-line="199" selection-end-column="1" />
+          <first_editor relative-caret-position="495">
+            <caret line="216" column="10" selection-start-line="216" selection-start-column="10" selection-end-line="216" selection-end-column="10" />
           </first_editor>
           <second_editor />
         </state>
