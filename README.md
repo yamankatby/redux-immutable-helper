@@ -104,7 +104,7 @@ This is a list of the methods that you can access by calling `array()` function 
 | `insertBefore()` | Adds an element to the targeted array before the passed index.       | expression: number | ((element) => boolean), element: any | array([1, 3]).insertBefore(1, 2);  |
 | `remove()`       | Removes an element from the passed index.                            | expression: number | ((element) => boolean)               | array([1, 2, 3]).remove(2);        |
 
-###push()
+##push()
 ```js
 import { array } from 'redux-immutable-helper';
 
@@ -118,7 +118,7 @@ const newAnimalsArray = array(animals).push('🐈'); // output => ['🐼', '🐶
 const animals = ['🐼', '🐶', '🐑'];
 const newAnimalsArray = array(animals).push('🐈', '🐓', '🐇'); // output => ['🐼', '🐶', '🐑', '🐈', '🐓', '🐇'];
 ```
-###unshift()
+##unshift()
 
 ```js
 import { array } from 'redux-immutable-helper';
@@ -133,7 +133,7 @@ const newFastFoodArray = array(fastFood).unshift('🍔'); // output => ['🍔', 
 const fastFood = ['🍗', '🍤', '🍟'];
 const newFastFoodArray = array(fastFood).unshift('🍔', '🍕', '🍣'); // output => ['🍔', '🍕', '🍣', '🍗', '🍤', '🍟'];
 ```
-###pop()
+##pop()
 
 ```js
 import { array } from 'redux-immutable-helper';
@@ -149,7 +149,7 @@ const clothes = ['👗', '👜', '👠'];
 const newClothesArray = array(clothes).pop(2); // output => ['👗'];
 ```
 
-###shift()
+##shift()
 
 ```js
 import { array } from 'redux-immutable-helper';
@@ -165,7 +165,7 @@ const flowers = ['🌸', '🌹', '🌻'];
 const newFlowersArray = array(flowers).shift(2); // output => ['🌹'];
 ```
 
-###replace()
+##replace()
 
 ```js
 import { array } from 'redux-immutable-helper';
@@ -181,7 +181,7 @@ const fruits = ['🍎', '🍉', '🍓'];
 const newFruitsArray = array(fruits).replace((fruit) => fruit === '🍎', '🍐'); // output => ['🍐', '🍉', '🍓'];
 ```
 
-###insertAfter()
+##insertAfter()
 
 ```js
 import { array } from 'redux-immutable-helper';
@@ -197,7 +197,7 @@ const shoes = ['👡', '👠', '👞'];
 const newShoesArray = array(shoes).insertAfter((shoe) => shoe === '👡', '👢'); // output => ['👡', '👢', '👠', '👞'];
 ```
 
-###insertBefore()
+##insertBefore()
 
 ```js
 import { array } from 'redux-immutable-helper';
@@ -213,7 +213,7 @@ const balls = ['🏀', '🎾', '⚽️'];
 const newBallsArray = array(balls).insertBefore((ball) => ball === '🎾', '🎱'); // output => ['🏀', '🎱', '🎾', '⚽'];
 ```
 
-###remove()
+##remove()
 
 ```js
 import { array } from 'redux-immutable-helper';
@@ -228,3 +228,13 @@ const newCartsArray = array(cars).remove(1); // output => ['🚙', '🚕'];
 const cars = ['🚙', '🚗', '🚕'];
 const newCartsArray = array(cars).remove((car) => car === '🚗'); // output => ['🚙', '🚕'];
 ```
+
+## Authors
+
+* **Yaman KATBY** - *Initial work* - [Website](https://yaman.idewaxa.com/)
+
+See also the list of [contributors](https://github.com/yamankatby/redux-immutable-helper/contributors) who participated in this project.
+
+## License
+
+This library is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
