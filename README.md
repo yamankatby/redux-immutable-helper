@@ -203,14 +203,14 @@ const newShoesArray = array(shoes).insertAfter((shoe) => shoe === '👡', '👢'
 ```js
 import { array } from 'redux-immutable-helper';
 
-const balls = ['🏀', '🎾', '⚽️'];
+const balls = ['🏀', '🎾', '⚽'];
 const newBallsArray = array(balls).insertBefore(1, '🎱'); // output => ['🏀', '🎱', '🎾', '⚽'];
 ```
 
 **Also you can it a expression**
 
 ```js
-const balls = ['🏀', '🎾', '⚽️'];
+const balls = ['🏀', '🎾', '⚽'];
 const newBallsArray = array(balls).insertBefore((ball) => ball === '🎾', '🎱'); // output => ['🏀', '🎱', '🎾', '⚽'];
 ```
 
