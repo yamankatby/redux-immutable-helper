@@ -31,6 +31,7 @@ const todoList = (state = [], action) => {
           ...action.newTodo,
         },
       ];
+      
     case 'UPDATE_TODO':
       const updated_todo_index = state.findIndex((todo) => todo.id === action.updatedTodo.id);
       return [
@@ -38,6 +39,7 @@ const todoList = (state = [], action) => {
         action.updatedTodo,
         ...state.slice(updated_todo_index + 1),
       ];
+      
     case 'TOGGLE_TODO':
       const toggled_todo_index = state.findIndex((todo) => todo.id === action.id);
       return [
@@ -48,6 +50,7 @@ const todoList = (state = [], action) => {
         },
         ...state.slice(toggled_todo_index + 1),
       ];
+      
     case 'REMOVE_TODO':
       const removed_todo_index = state.findIndex((todo) => todo.id === action.id);
       return [
@@ -71,12 +74,12 @@ const todoList = (state = [], action) => {
     case 'ADD_TODO':
       return state.immutablePush(action.newTodo);
     case 'UPDATE_TODO':
-      return state.immutableReplace((todo) => todo.id === action.updatedTodo.id, action.updatedTodo);
+      return state.immutableReplace(todo => todo.id === action.updatedTodo.id, action.updatedTodo);
     case 'TOGGLE_TODO':
-      const index = state.findIndex((todo) => todo.id === action.id);
-      return state.immutableReplace(index, object(state[index]).update((prevTarget) => ({ completed: !prevTarget.completed })));
+      const index = state.findIndex(todo => todo.id === action.id);
+      return state.immutableReplace(index, state[index].immutableUpdate(source => ({ completed: !source.completed })));
     case 'REMOVE_TODO':
-      return state.immutableRemove((todo) => todo.id === action.id);
+      return state.immutableRemove(todo => todo.id === action.id);
 
     default:
       return state;
