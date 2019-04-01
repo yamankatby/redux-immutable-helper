@@ -1,64 +1,48 @@
 // created with ❤ by Yaman Katby at 25 Mar 2019.
 
-export type Expression<T> = number | ((element: T) => boolean);
+import { IArray, IIndex } from '../types/array';
 
-const findIndex = <T>(target: T[], expression: Expression<T>): number => {
-  if (typeof expression === 'number') {
-    return expression;
-  } else if (typeof expression === 'function') {
-    return target.findIndex(expression);
+const getIndex = <T>(source: T[], index: IIndex<T>): number => {
+  if (typeof index === 'number') {
+    return index;
+  } else if (typeof index === 'function') {
+    return source.findIndex(index);
   }
 
-  return -1;
+  throw new Error("Look's like your index nor number neither function.");
 };
 
-const array = <T>(target: T[]) => {
+const array = <T>(source: T[]): IArray<T> => {
   const push = (...elements: T[]): T[] => {
-    return [...target, ...elements];
+    return [...source, ...elements];
   };
   const unshift = (...elements: T[]): T[] => {
-    return [...elements, ...target];
+    return [...elements, ...source];
   };
   const pop = (count: number = 1): T[] => {
-    return target.slice(0, target.length - count);
+    return source.slice(0, source.length - count);
   };
   const shift = (count: number = 1): T[] => {
-    return target.slice(count);
+    return source.slice(count);
   };
-  const concat = (newArray: T[]): T[] => {
-    return push(...newArray);
+  const concat = (target: T[]): T[] => {
+    return push(...target);
   };
-  const replace = (expression: Expression<T>, element: T): T[] => {
-    const index = findIndex(target, expression);
-    if (index === -1) {
-      return target;
-    }
-
-    return [...target.slice(0, index), element, ...target.slice(index + 1)];
+  const replace = (index: IIndex<T>, element: T): T[] => {
+    const indexer = getIndex(source, index);
+    return [...source.slice(0, indexer), element, ...source.slice(indexer + 1)];
   };
-  const insertAfter = (expression: Expression<T>, element: T): T[] => {
-    const index = findIndex(target, expression);
-    if (index === -1) {
-      return target;
-    }
-
-    return [...target.slice(0, index + 1), element, ...target.slice(index + 1)];
+  const insertAfter = (index: IIndex<T>, element: T): T[] => {
+    const indexer = getIndex(source, index);
+    return [...source.slice(0, indexer + 1), element, ...source.slice(indexer + 1)];
   };
-  const insertBefore = (expression: Expression<T>, element: T): T[] => {
-    const index = findIndex(target, expression);
-    if (index === -1) {
-      return target;
-    }
-
-    return [...target.slice(0, index), element, ...target.slice(index)];
+  const insertBefore = (index: IIndex<T>, element: T): T[] => {
+    const indexer = getIndex(source, index);
+    return [...source.slice(0, indexer), element, ...source.slice(indexer)];
   };
-  const remove = (expression: Expression<T>): T[] => {
-    const index = findIndex(target, expression);
-    if (index === -1) {
-      return target;
-    }
-
-    return [...target.slice(0, index), ...target.slice(index + 1)];
+  const remove = (index: IIndex<T>): T[] => {
+    const indexer = getIndex(source, index);
+    return [...source.slice(0, indexer), ...source.slice(indexer + 1)];
   };
 
   return { push, unshift, pop, shift, concat, replace, insertAfter, insertBefore, remove };

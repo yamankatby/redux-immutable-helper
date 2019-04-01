@@ -3,4 +3,6 @@
 import array from './array';
 import object from './object';
 
+import './array.prototype';
+
 export { array, object };

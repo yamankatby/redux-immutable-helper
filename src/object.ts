@@ -1,21 +1,21 @@
 // created with ❤ by Yaman Katby at 01 Apr 2019.
 
-export type Expression<T> = T | ((prevTarget: T) => T) | any;
+import { IObject, ITarget } from '../types/object';
 
-const findTarget = <T>(expression: Expression<T>, prevTarget: T): T => {
-  if (typeof expression === 'object') {
-    return expression;
-  } else if (typeof expression === 'function') {
-    return expression({ ...prevTarget });
+const getTarget = <T>(target: ITarget<T>, prevSource: T): T => {
+  if (typeof target === 'object') {
+    return target;
+  } else if (typeof target === 'function') {
+    // @ts-ignore
+    return target(prevSource);
   }
 
-  throw new Error('Make sure that you pass an Object or Function');
+  throw new Error("Look's like your target not object neither function.");
 };
 
-const object = <T>(target: T) => {
-  const update = (expression: Expression<T>) => {
-    const updatedTarget = findTarget(expression, target);
-    return { ...target, ...updatedTarget };
+const object = <T>(source: T): IObject<T> => {
+  const update = (target: ITarget<T>): T => {
+    return { ...source, ...getTarget(target, source) };
   };
 
   return { update };
