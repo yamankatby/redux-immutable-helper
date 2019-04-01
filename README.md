@@ -64,7 +64,7 @@ const todoList = (state = [], action) => {
 **Using the power of redux-immutable-helper**
 
 ```js
-import { array } from 'redux-immutable-helper';
+import { array, object } from 'redux-immutable-helper';
 
 const todoList = (state = [], action) => {
   switch (action.type) {
@@ -73,10 +73,8 @@ const todoList = (state = [], action) => {
     case 'UPDATE_TODO':
       return array(state).replace((todo) => todo.id === action.updatedTodo.id, action.updatedTodo);
     case 'TOGGLE_TODO':
-      return array(state).replace((todo) => todo.id === action.id, {
-        ...state[state.findIndex((todo) => todo.id === action.id)],
-        completed: !state.findIndex((todo) => todo.id === action.id),
-      });
+      const index = state.findIndex((todo) => todo.id === action.id);
+      return array(state).replace(index, object(state[index]).update((prevTarget) => ({ completed: !prevTarget.completed })));
     case 'REMOVE_TODO':
       return array(state).remove((todo) => todo.id === action.id);
 
@@ -84,8 +82,7 @@ const todoList = (state = [], action) => {
       return state;
   }
 };
-```
-**Note: Maybe you have noticed that the code in the 'TOGGLE_TODO' case uglier than the rest code. Let me congrats you for your Hawk Eyes. That's right because right now we only work with arrays and the todo individual is an object. But in the very near future we will be able to handle objects.** 
+``` 
 
 If it does make sense for you go up ⭐ me and let's read the documentation.
 
