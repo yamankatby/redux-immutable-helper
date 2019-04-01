@@ -1,6 +1,6 @@
 // created with ❤ by Yaman Katby at 01 Apr 2019.
 
-import { IObject, ITarget } from '../types/object';
+import { IObject, ITarget } from './types/object';
 
 const getTarget = <T>(target: ITarget<T>, prevSource: T): T => {
   if (typeof target === 'object') {

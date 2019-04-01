@@ -1,9 +1,7 @@
 // created with ❤ by Yaman Katby at 01 Apr 2019.
 
 import { IIndex } from '../types/array';
-import { array } from './';
-
-const prototype = Array.prototype;
+import { array } from '..';
 
 // tslint:disable:interface-name
 declare global {
@@ -19,6 +17,8 @@ declare global {
     immutableRemove: <T>(index: IIndex<T>) => T[];
   }
 }
+
+const prototype = Array.prototype;
 
 prototype.immutablePush = function<T>(...elements: T[]): T[] {
   return array(this).push(...elements);

@@ -1,6 +1,6 @@
 // created with ❤ by Yaman Katby at 25 Mar 2019.
 
-import { IArray, IIndex } from '../types/array';
+import { IArray, IIndex } from './types/array';
 
 const getIndex = <T>(source: T[], index: IIndex<T>): number => {
   if (typeof index === 'number') {
@@ -29,19 +29,19 @@ const array = <T>(source: T[]): IArray<T> => {
     return push(...target);
   };
   const replace = (index: IIndex<T>, element: T): T[] => {
-    const indexer = getIndex(source, index);
+    const indexer = getIndex<T>(source, index);
     return [...source.slice(0, indexer), element, ...source.slice(indexer + 1)];
   };
   const insertAfter = (index: IIndex<T>, element: T): T[] => {
-    const indexer = getIndex(source, index);
+    const indexer = getIndex<T>(source, index);
     return [...source.slice(0, indexer + 1), element, ...source.slice(indexer + 1)];
   };
   const insertBefore = (index: IIndex<T>, element: T): T[] => {
-    const indexer = getIndex(source, index);
+    const indexer = getIndex<T>(source, index);
     return [...source.slice(0, indexer), element, ...source.slice(indexer)];
   };
   const remove = (index: IIndex<T>): T[] => {
-    const indexer = getIndex(source, index);
+    const indexer = getIndex<T>(source, index);
     return [...source.slice(0, indexer), ...source.slice(indexer + 1)];
   };
 
