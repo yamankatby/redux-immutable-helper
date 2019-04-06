@@ -31,7 +31,6 @@ const todoList = (state = [], action) => {
           ...action.newTodo,
         },
       ];
-      
     case 'UPDATE_TODO':
       const updated_todo_index = state.findIndex((todo) => todo.id === action.updatedTodo.id);
       return [
@@ -39,7 +38,6 @@ const todoList = (state = [], action) => {
         action.updatedTodo,
         ...state.slice(updated_todo_index + 1),
       ];
-      
     case 'TOGGLE_TODO':
       const toggled_todo_index = state.findIndex((todo) => todo.id === action.id);
       return [
@@ -50,14 +48,13 @@ const todoList = (state = [], action) => {
         },
         ...state.slice(toggled_todo_index + 1),
       ];
-      
     case 'REMOVE_TODO':
       const removed_todo_index = state.findIndex((todo) => todo.id === action.id);
       return [
         ...state.slice(0, removed_todo_index),
         ...state.slice(removed_todo_index + 1),
       ];
-
+      
     default:
       return state;
   }
