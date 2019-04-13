@@ -31,7 +31,6 @@ const array = <T>(source: T[]): IArray<T> => {
   const replace = (index: IIndex<T>, element: T | ((prevElement: T) => T) | any): T[] => {
     const indexer = getIndex<T>(source, index);
     const target = typeof element === 'function' ? element(source[indexer]) : element;
-
     return [...source.slice(0, indexer), target, ...source.slice(indexer + 1)];
   };
   const insertAfter = (index: IIndex<T>, element: T): T[] => {

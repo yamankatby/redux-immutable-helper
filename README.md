@@ -64,19 +64,18 @@ const todoList = (state = [], action) => {
 **Using the power of redux-immutable-helper**
 
 ```js
-import 'redux-immutable-helper/lib/prototypes';
+import { array } from 'redux-immutable-helper';
 
 const todoList = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TODO':
-      return state.immutablePush(action.newTodo);
+      return array(state).push(action.newTodo);
     case 'UPDATE_TODO':
-      return state.immutableReplace(todo => todo.id === action.updatedTodo.id, action.updatedTodo);
+      return array(state).replace((todo) => todo.id === action.updatedTodo.id, action.updatedTodo);
     case 'TOGGLE_TODO':
-      const index = state.findIndex(todo => todo.id === action.id);
-      return state.immutableReplace(index, state[index].immutableUpdate(source => ({ completed: !source.completed })));
+      return array(state).replace((todo) => todo.id === action.id, ((prevTodo) => ({ ...prevTodo, completed: !prevTodo.completed })));
     case 'REMOVE_TODO':
-      return state.immutableRemove(todo => todo.id === action.id);
+      return array(state).remove((todo) => todo.id === action.id);
 
     default:
       return state;
