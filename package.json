@@ -1,42 +1,43 @@
 {
-	"name": "redux-immutable-helper",
-	"version": "0.1.4",
-	"main": "lib/index.js",
-	"types": "lib/index.d.ts",
-	"license": "MIT",
-	"private": false,
-	"author": "Yaman KATBY <m.yaman.katby@gmail.com> (https://yaman.idewaxa.com/)",
-	"keywords": [
-		"redux",
-		"immutable",
-		"mutation",
-		"mutate",
-		"immutate",
-		"freeze",
-		"helper"
-	],
-	"homepage": "https://github.com/yamankatby/redux-immutable-helper.git",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/yamankatby/redux-immutable-helper.git"
-	},
-	"files": [
-		"lib/**/*"
-	],
-	"scripts": {
-		"build": "tsc",
-		"format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-		"lint": "tslint -p tsconfig.json",
-		"test": "jest --config jestconfig.json",
-		"ready": "yarn test && yarn lint && yarn format && yarn build"
-	},
-	"devDependencies": {
-		"@types/jest": "^24.0.11",
-		"jest": "^24.5.0",
-		"prettier": "^1.16.4",
-		"ts-jest": "^24.0.0",
-		"tslint": "^5.14.0",
-		"tslint-config-prettier": "^1.18.0",
-		"typescript": "^3.3.3333"
-	}
+  "name": "redux-immutable-helper",
+  "description": "Magical package to work with immutable Redux reducers.",
+  "version": "0.1.4",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "license": "MIT",
+  "private": false,
+  "author": "Yaman KATBY <m.yaman.katby@gmail.com> (https://yaman.idewaxa.com/)",
+  "keywords": [
+	"redux",
+	"immutable",
+	"mutation",
+	"mutate",
+	"immutate",
+	"freeze",
+	"helper"
+  ],
+  "homepage": "https://github.com/yamankatby/redux-immutable-helper.git",
+  "repository": {
+	"type": "git",
+	"url": "https://github.com/yamankatby/redux-immutable-helper.git"
+  },
+  "files": [
+	"lib/**/*"
+  ],
+  "scripts": {
+	"build": "tsc",
+	"format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+	"lint": "tslint -p tsconfig.json",
+	"test": "jest --config jestconfig.json",
+	"ready": "yarn test && yarn lint && yarn format && yarn build"
+  },
+  "devDependencies": {
+	"@types/jest": "^24.0.11",
+	"jest": "^24.5.0",
+	"prettier": "^1.16.4",
+	"ts-jest": "^24.0.0",
+	"tslint": "^5.14.0",
+	"tslint-config-prettier": "^1.18.0",
+	"typescript": "^3.3.3333"
+  }
 }

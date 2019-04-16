@@ -5,6 +5,80 @@
 [![GitHub issues](https://img.shields.io/github/issues-raw/yamankatby/redux-immutable-helper.svg)](https://github.com/yamankatby/redux-immutable-helper/issues)
 [![Used Languages](https://img.shields.io/github/languages/top/yamankatby/redux-immutable-helper.svg)](https://github.com/yamankatby/redux-immutable-helper/issues)
 
+To make sure that you understood why I wrote this library, I want you to compare the "Todo App" reducer below which I wrote twice. One time only by using Javascript and one time by using the power of `redux-immutable-hlper` library.
+
+**Only Javascript**
+```js
+const todoList = (state = [], action) => {
+  switch (action.type) {
+    case "ADD_TODO": {
+      return [...state, { ...action.newTodo }];
+    }
+    case "UPDATE_TODO": {
+      const updated_todo_index = state.findIndex(
+        todo => todo.id === action.updatedTodo.id
+      );
+      return [
+        ...state.slice(0, updated_todo_index),
+        action.updatedTodo,
+        ...state.slice(updated_todo_index + 1)
+      ];
+    }
+    case "TOGGLE_TODO": {
+      const toggled_todo_index = state.findIndex(todo => todo.id === action.id);
+      return [
+        ...state.slice(0, toggled_todo_index),
+        {
+          ...state[toggled_todo_index],
+          completed: !state[toggled_todo_index]
+        },
+        ...state.slice(toggled_todo_index + 1)
+      ];
+    }
+    case "REMOVE_TODO": {
+      const removed_todo_index = state.findIndex(todo => todo.id === action.id);
+      return [
+        ...state.slice(0, removed_todo_index),
+        ...state.slice(removed_todo_index + 1)
+      ];
+    }
+
+    default:
+      return state;
+  }
+};
+``` 
+
+**Using the power of redux-immutable-helper**
+
+```js
+import { array } from "redux-immutable-helper";
+
+const todoList = (state = [], action) => {
+  switch (action.type) {
+    case "ADD_TODO":
+      return array(state).push(action.newTodo);
+    case "UPDATE_TODO":
+      return array(state).replace(
+        todo => todo.id === action.updatedTodo.id,
+        action.updatedTodo
+      );
+    case "TOGGLE_TODO":
+      return array(state).replace(
+        todo => todo.id === action.id,
+        prevTodo => ({ ...prevTodo, completed: !prevTodo.completed })
+      );
+    case "REMOVE_TODO":
+      return array(state).remove(todo => todo.id === action.id);
+
+    default:
+      return state;
+  }
+};
+``` 
+
+If it does make sense for you go up ⭐ me and let's read the documentation.
+
 ## Installation
 
 
@@ -16,74 +90,6 @@ npm install redux-immutable-helper --save
 ```
 yarn add redux-immutable-helper
 ```
-
-## Getting Started
-To make sure that you understood why I written this librery I want you to compare the Todo reducer below which I have written twice. One time only by using Javascript and one time using `redux-immutable-hlper` power.
-
-**Only Javascript**
-```js
-const todoList = (state = [], action) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return [
-        ...state,
-        {
-          ...action.newTodo,
-        },
-      ];
-    case 'UPDATE_TODO':
-      const updated_todo_index = state.findIndex((todo) => todo.id === action.updatedTodo.id);
-      return [
-        ...state.slice(0, updated_todo_index),
-        action.updatedTodo,
-        ...state.slice(updated_todo_index + 1),
-      ];
-    case 'TOGGLE_TODO':
-      const toggled_todo_index = state.findIndex((todo) => todo.id === action.id);
-      return [
-        ...state.slice(0, toggled_todo_index),
-        {
-          ...state[toggled_todo_index],
-          completed: !state[toggled_todo_index],
-        },
-        ...state.slice(toggled_todo_index + 1),
-      ];
-    case 'REMOVE_TODO':
-      const removed_todo_index = state.findIndex((todo) => todo.id === action.id);
-      return [
-        ...state.slice(0, removed_todo_index),
-        ...state.slice(removed_todo_index + 1),
-      ];
-      
-    default:
-      return state;
-  }
-};
-``` 
-
-**Using the power of redux-immutable-helper**
-
-```js
-import { array } from 'redux-immutable-helper';
-
-const todoList = (state = [], action) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return array(state).push(action.newTodo);
-    case 'UPDATE_TODO':
-      return array(state).replace((todo) => todo.id === action.updatedTodo.id, action.updatedTodo);
-    case 'TOGGLE_TODO':
-      return array(state).replace((todo) => todo.id === action.id, ((prevTodo) => ({ ...prevTodo, completed: !prevTodo.completed })));
-    case 'REMOVE_TODO':
-      return array(state).remove((todo) => todo.id === action.id);
-
-    default:
-      return state;
-  }
-};
-``` 
-
-If it does make sense for you go up ⭐ me and let's read the documentation.
 
 ## Documentation
 
@@ -103,127 +109,127 @@ This is a list of the methods that you can access by calling `array()` function 
 ### pop()
 
 ```js
-import { array } from 'redux-immutable-helper';
+import { array } from "redux-immutable-helper";
 
-const animals = ['🐼', '🐶', '🐑'];
-const newAnimalsArray = array(animals).push('🐈'); // output => ['🐼', '🐶', '🐑', '🐈'];
+const list = ["🐼", "🐶", "🐑"];
+const newList = array(list).push("🐈"); // output => ["🐼", "🐶", "🐑", "🐈"];
 ```
 
 **Also you can pass multiple element:**
 
 ```js
-const animals = ['🐼', '🐶', '🐑'];
-const newAnimalsArray = array(animals).push('🐈', '🐓', '🐇'); // output => ['🐼', '🐶', '🐑', '🐈', '🐓', '🐇'];
+const list = ["🐼", "🐶", "🐑"];
+const newList = array(list).push("🐈", "🐓", "🐇"); // output => ['🐼', '🐶', '🐑', '🐈', '🐓', '🐇'];
 ```
 ### unshift()
 
 ```js
-import { array } from 'redux-immutable-helper';
+import { array } from "redux-immutable-helper";
 
-const fastFood = ['🍗', '🍤', '🍟'];
-const newFastFoodArray = array(fastFood).unshift('🍔'); // output => ['🍔', '🍗', '🍤', '🍟'];
+const list = ["🐶", "🐑", "🐈"];
+const newList = array(list).unshift("🐼"); // output => ["🐼", "🐶", "🐑", "🐈"];
 ```
 
 **Also you can pass multiple element:**
 
 ```js
-const fastFood = ['🍗', '🍤', '🍟'];
-const newFastFoodArray = array(fastFood).unshift('🍔', '🍕', '🍣'); // output => ['🍔', '🍕', '🍣', '🍗', '🍤', '🍟'];
+const list = ["🐶", "🐑", "🐈"];
+const newList = array(list).unshift("🐼", "🐓", "🐇"); // output => ['🐼','🐓', '🐇', '🐶', '🐑', '🐈'];
 ```
 ### pop()
 
 ```js
-import { array } from 'redux-immutable-helper';
+import { array } from "redux-immutable-helper";
 
-const clothes = ['👗', '👜', '👠'];
-const newClothesArray = array(clothes).pop(); // output => ['👗', '👜'];
+const list = ["🐼", "🐶", "🐑"];
+const newList = array(list).pop(); // output => ["🐼", "🐶"];
 ```
 
 **Also you can pass it a count**
 
 ```js
-const clothes = ['👗', '👜', '👠'];
-const newClothesArray = array(clothes).pop(2); // output => ['👗'];
+const list = ["🐼", "🐶", "🐑"];
+const newList = array(list).pop(2); // output => ["🐼"];
 ```
 
 ### shift()
 
 ```js
-import { array } from 'redux-immutable-helper';
+import { array } from "redux-immutable-helper";
 
-const flowers = ['🌸', '🌹', '🌻'];
-const newFlowersArray = array(flowers).shift(); // output => ['🌹', '🌻'];
+const list = ["🐼", "🐶", "🐑"];
+const newList = array(list).shift(); // output => ["🐶", "🐑"];
 ```
 
 **Also you can pass it a count**
 
 ```js
-const flowers = ['🌸', '🌹', '🌻'];
-const newFlowersArray = array(flowers).shift(2); // output => ['🌹'];
+const list = ["🐼", "🐶", "🐑"];
+const newList = array(list).shift(2); // output => ["🐑"];
 ```
 
 ### replace()
 
 ```js
-import { array } from 'redux-immutable-helper';
+import { array } from "redux-immutable-helper";
 
-const fruits = ['🍎', '🍉', '🍓'];
-const newFruitsArray = array(fruits).replace(0, '🍐'); // output => ['🍐', '🍉', '🍓'];
+const list = ["🐼", "🐶", "🐑"];
+const newList = array(list).replace(0, "🐈"); // output => ["🐈", "🐶", "🐑"];
 ```
 
 **Also you can it a expression**
 
 ```js
-const fruits = ['🍎', '🍉', '🍓'];
-const newFruitsArray = array(fruits).replace((fruit) => fruit === '🍎', '🍐'); // output => ['🍐', '🍉', '🍓'];
+const list = ["🐼", "🐶", "🐑"];
+const newList = array(list).replace(animal => animal === "🐼", "🐈"); // output => ["🐈", "🐶", "🐑"];
 ```
 
 ### insertAfter()
 
 ```js
-import { array } from 'redux-immutable-helper';
+import { array } from "redux-immutable-helper";
 
-const shoes = ['👡', '👠', '👞'];
-const newShoesArray = array(shoes).insertAfter(0, '👢'); // output => ['👡', '👢', '👠', '👞'];
+const list = ["🐼", "🐶", "🐑"];
+const newList = array(list).insertAfter(1, "🐈"); // output => ["🐼", "🐶", "🐈", "🐑"];
 ```
 
 **Also you can it a expression**
 
 ```js
-const shoes = ['👡', '👠', '👞'];
-const newShoesArray = array(shoes).insertAfter((shoe) => shoe === '👡', '👢'); // output => ['👡', '👢', '👠', '👞'];
+const list = ["🐼", "🐶", "🐑"];
+const newList = array(list).insertAfter(animal => animal === "🐶", "🐈"); // output => ["🐼", "🐶", 🐈", "🐑"];
 ```
 
 ### insertBefore()
 
 ```js
-import { array } from 'redux-immutable-helper';
+import { array } from "redux-immutable-helper";
 
-const balls = ['🏀', '🎾', '⚽'];
-const newBallsArray = array(balls).insertBefore(1, '🎱'); // output => ['🏀', '🎱', '🎾', '⚽'];
+const list = ["🐼", "🐶", "🐑"];
+const newList = array(list).insertBefore(1, "🐈"); // output => ["🐼", "🐈", "🐶", "🐑"];
 ```
 
 **Also you can it a expression**
 
 ```js
-const balls = ['🏀', '🎾', '⚽'];
-const newBallsArray = array(balls).insertBefore((ball) => ball === '🎾', '🎱'); // output => ['🏀', '🎱', '🎾', '⚽'];
+const list = ["🐼", "🐶", "🐑"];
+const newList = array(list).insertBefore(animal => animal === "🐶", "🐈"); // output => ["🐼", 🐈", "🐶", "🐑"];
 ```
 
 ### remove()
 
 ```js
-import { array } from 'redux-immutable-helper';
+import { array } from "redux-immutable-helper";
 
-const cars = ['🚙', '🚗', '🚕'];
-const newCartsArray = array(cars).remove(1); // output => ['🚙', '🚕'];
+const list = ["🐼", "🐶", "🐑"];
+const newList = array(list).remove(2); // output => ["🐼", "🐶"];
 ```
 
 **Also you can it a expression**
 
 ```js
-const cars = ['🚙', '🚗', '🚕'];
-const newCartsArray = array(cars).remove((car) => car === '🚗'); // output => ['🚙', '🚕'];
+const list = ["🐼", "🐶", "🐑"];
+const newList = array(list).remove(animal => animal === "🐑"); // output => ["🐼", "🐶"];
 ```
 
 ## Authors
