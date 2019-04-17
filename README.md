@@ -49,7 +49,7 @@ const todoList = (state = [], action) => {
 };
 ``` 
 
-**Using the power of redux-immutable-helper**
+**Using the power of `redux-immutable-helper`**
 
 ```js
 import { array } from "redux-immutable-helper";
@@ -106,20 +106,21 @@ This is a list of the methods that you can access by calling `array()` function 
 | `insertBefore()` | Adds an element to the targeted array before the passed index.       | expression: number | ((element) => boolean), element: any | array([1, 3]).insertBefore(1, 2);  |
 | `remove()`       | Removes an element from the passed index.                            | expression: number | ((element) => boolean)               | array([1, 2, 3]).remove(2);        |
 
-### pop()
-
+### push()
+`push()` method like the original `Array.prototype.push()` method helps you to add an element to the end of the array but without mutating the original array. For example: 
 ```js
 import { array } from "redux-immutable-helper";
 
 const list = ["🐼", "🐶", "🐑"];
 const newList = array(list).push("🐈"); // output => ["🐼", "🐶", "🐑", "🐈"];
 ```
+the `newList` variable will contain the new array and the `list` variable will still as it.
 
-**Also you can pass multiple element:**
 
+Also it's allowing you to add multi element to the end of the array by passing them as a separated arguments as following.
 ```js
 const list = ["🐼", "🐶", "🐑"];
-const newList = array(list).push("🐈", "🐓", "🐇"); // output => ['🐼', '🐶', '🐑', '🐈', '🐓', '🐇'];
+const newList = array(list).push("🐈", "🐓", "🐇"); // output => ["🐼", "🐶", "🐑", "🐈", "🐓", "🐇"];
 ```
 ### unshift()
 
@@ -134,7 +135,7 @@ const newList = array(list).unshift("🐼"); // output => ["🐼", "🐶", "🐑
 
 ```js
 const list = ["🐶", "🐑", "🐈"];
-const newList = array(list).unshift("🐼", "🐓", "🐇"); // output => ['🐼','🐓', '🐇', '🐶', '🐑', '🐈'];
+const newList = array(list).unshift("🐼", "🐓", "🐇"); // output => ["🐼", "🐓", "🐇", "🐶", "🐑", "🐈"];
 ```
 ### pop()
 
@@ -230,6 +231,29 @@ const newList = array(list).remove(2); // output => ["🐼", "🐶"];
 ```js
 const list = ["🐼", "🐶", "🐑"];
 const newList = array(list).remove(animal => animal === "🐑"); // output => ["🐼", "🐶"];
+```
+
+## Contributing
+We would love to have community contributions and support! A few areas where could use help right now:
+* Adding `replaceAll` method to array object
+* Adding `removeAll` method to array object
+* Bug reports and/or fixes
+* Writing tests
+* Creating examples for the docs
+
+If you want to contribute, please submit a pull request, or contact m.yaman.katby@gmail.com for more information.
+When you commit your messages, follow this convention:
+```
+Main changes subject
+- Optional message
+- Another optional message
+```
+
+If you do a breaking change, add an explanation preceded by `BREAKING CHANGE:` keyword. For example:
+```
+BREAKING CHANGE: Main changes subject
+- Optional message
+- Another optional message
 ```
 
 ## Authors
