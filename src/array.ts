@@ -45,12 +45,12 @@ export const remove = <T>(source: T[], index: number | PredicateFn<T>): T[] => {
   return [...source.slice(0, indexer), ...source.slice(indexer + 1)];
 };
 
-const array = <T>(source: T[]): ArrayAPI<T> => {
+export const array = <T>(source: T[]): ArrayAPI<T> => {
   if (!Array.isArray(source)) {
     new TypeError(`Look's like that your source type isn't array.`);
   }
 
-  const publicAPI = {
+  return {
     push: (...elements: T[]) => push(source, ...elements),
     unshift: (...elements: T[]) => unshift(source, ...elements),
     pop: (count: number = 1) => pop(source, count),
@@ -59,10 +59,8 @@ const array = <T>(source: T[]): ArrayAPI<T> => {
     replace: (index: number | PredicateFn<T>, element: T | CallbackFn<T>) => replace(source, index, element),
     insertAfter: (index: number | PredicateFn<T>, element: T) => insertAfter(source, index, element),
     insertBefore: (index: number | PredicateFn<T>, element: T) => insertBefore(source, index, element),
-    remove: (index: number | PredicateFn<T>) => remove(source, index),
+    remove: (index: number | PredicateFn<T>) => remove(source, index)
   };
-
-  return publicAPI;
 };
 
 export default array;
