@@ -1,7 +1,7 @@
 // created with ❤ by Yaman Katby at 25 Mar 2019.
 
 import { array } from '../src';
-import { deepFreeze } from '../src/utilities';
+import { deepFreeze } from '../src/utilities/utilities';
 
 it('can add new element to the end of the array', () => {
   const source = [1, 2, 3];

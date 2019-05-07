@@ -1,16 +1,7 @@
 // created with ❤ by Yaman Katby at 25 Mar 2019.
 
-import { IArray, IIndex } from './types/array';
-
-const getIndex = <T>(source: T[], index: IIndex<T>): number => {
-  if (typeof index === 'number') {
-    return index;
-  } else if (typeof index === 'function') {
-    return source.findIndex(index);
-  }
-
-  throw new Error('Look\'s like your index nor number neither function.');
-};
+import { CallbackFn, IArray, PredicateFn } from './utilities/types';
+import { indexify } from './utilities/utilities';
 
 const array = <T>(source: T[]): IArray<T> => {
   if (!Array.isArray(source)) {
@@ -32,21 +23,21 @@ const array = <T>(source: T[]): IArray<T> => {
   const concat = (target: T[]): T[] => {
     return push(...target);
   };
-  const replace = (index: IIndex<T>, element: T | ((prevElement: T) => T)): T[] => {
-    const indexer = getIndex<T>(source, index);
+  const replace = (index: number | PredicateFn<T>, element: T | CallbackFn<T>): T[] => {
+    const indexer = indexify(source, index);
     const target = typeof element === 'function' ? element.call(undefined, source[indexer]) : element;
     return [...source.slice(0, indexer), target, ...source.slice(indexer + 1)];
   };
-  const insertAfter = (index: IIndex<T>, element: T): T[] => {
-    const indexer = getIndex<T>(source, index);
+  const insertAfter = (index: number | PredicateFn<T>, element: T): T[] => {
+    const indexer = indexify(source, index);
     return [...source.slice(0, indexer + 1), element, ...source.slice(indexer + 1)];
   };
-  const insertBefore = (index: IIndex<T>, element: T): T[] => {
-    const indexer = getIndex<T>(source, index);
+  const insertBefore = (index: number | PredicateFn<T>, element: T): T[] => {
+    const indexer = indexify(source, index);
     return [...source.slice(0, indexer), element, ...source.slice(indexer)];
   };
-  const remove = (index: IIndex<T>): T[] => {
-    const indexer = getIndex<T>(source, index);
+  const remove = (index: number | PredicateFn<T>): T[] => {
+    const indexer = indexify(source, index);
     return [...source.slice(0, indexer), ...source.slice(indexer + 1)];
   };
 
