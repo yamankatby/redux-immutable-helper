@@ -12,7 +12,7 @@ declare global {
 
 const prototype = Object.prototype;
 
-prototype.immutableUpdate = function<T>(target: ITarget<T>): T {
+prototype.immutableUpdate = function <T>(target: ITarget<T>): T {
   // @ts-ignore
   return object(this).update(target);
 };

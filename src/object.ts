@@ -10,7 +10,7 @@ const getTarget = <T>(target: ITarget<T>, prevSource: T): T => {
     return target(prevSource);
   }
 
-  throw new Error("Look's like your target not object neither function.");
+  throw new Error('Look\'s like your target not object neither function.');
 };
 
 const object = <T>(source: T): IObject<T> => {

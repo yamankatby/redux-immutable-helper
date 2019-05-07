@@ -20,30 +20,30 @@ declare global {
 
 const prototype = Array.prototype;
 
-prototype.immutablePush = function<T>(...elements: T[]): T[] {
+prototype.immutablePush = function <T>(...elements: T[]): T[] {
   return array(this).push(...elements);
 };
-prototype.immutableUnshift = function<T>(...elements: T[]): T[] {
+prototype.immutableUnshift = function <T>(...elements: T[]): T[] {
   return array(this).unshift(...elements);
 };
-prototype.immutablePop = function<T>(count?: number): T[] {
+prototype.immutablePop = function <T>(count?: number): T[] {
   return array(this).pop(count);
 };
-prototype.immutableShift = function<T>(count?: number): T[] {
+prototype.immutableShift = function <T>(count?: number): T[] {
   return array(this).shift(count);
 };
-prototype.immutableConcat = function<T>(target: T[]): T[] {
+prototype.immutableConcat = function <T>(target: T[]): T[] {
   return array(this).concat(target);
 };
-prototype.immutableReplace = function<T>(index: IIndex<T>, element: T): T[] {
+prototype.immutableReplace = function <T>(index: IIndex<T>, element: T): T[] {
   return array(this).replace(index, element);
 };
-prototype.immutableInsertAfter = function<T>(index: IIndex<T>, element: T): T[] {
+prototype.immutableInsertAfter = function <T>(index: IIndex<T>, element: T): T[] {
   return array(this).insertAfter(index, element);
 };
-prototype.immutableInsertBefore = function<T>(index: IIndex<T>, element: T): T[] {
+prototype.immutableInsertBefore = function <T>(index: IIndex<T>, element: T): T[] {
   return array(this).insertBefore(index, element);
 };
-prototype.immutableRemove = function<T>(index: IIndex<T>): T[] {
+prototype.immutableRemove = function <T>(index: IIndex<T>): T[] {
   return array(this).remove(index);
 };

@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node@10/10.15.2/bin/node /usr/local/Cellar/yarn/1.15.2/libexec/bin/yarn.js ready
+  /usr/local/Cellar/node@10/10.15.2/bin/node /usr/local/Cellar/yarn/1.15.2/libexec/bin/yarn.js remove tslint-config-prettier tslint prettier
 
 PATH: 
   /usr/local/Cellar/node/10.9.0/bin:/usr/local/mongodb/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/yamankatby/Documents/Projects/redux-immutable-helper/node_modules/.bin:/Users/yamankatby/Library/Android/sdk/tools:/Users/yamankatby/Library/Android/sdk/platform-tools
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  SyntaxError: /Users/yamankatby/Documents/Projects/redux-immutable-helper/package.json: Unexpected token } in JSON at position 518
+  SyntaxError: /Users/yamankatby/Documents/Projects/redux-immutable-helper/package.json: Unexpected token } in JSON at position 701
       at JSON.parse (<anonymous>)
       at /usr/local/Cellar/yarn/1.15.2/libexec/lib/cli.js:1625:59
       at Generator.next (<anonymous>)
@@ -24,7 +24,8 @@ Trace:
 npm manifest: 
   {
     "name": "redux-immutable-helper",
-    "version": "0.0.1",
+    "description": "Magical package to work with immutable Redux reducers.",
+    "version": "0.1.4",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "license": "MIT",
@@ -42,19 +43,15 @@ npm manifest:
     "homepage": "https://github.com/yamankatby/redux-immutable-helper.git",
     "repository": {
   	"type": "git",
-  	"url": "https://github.com/yamankatby/redux-immutable-helper.git",
+  	"url": "https://github.com/yamankatby/redux-immutable-helper.git"
     },
     "files": [
   	"lib/**/*"
     ],
     "scripts": {
   	"build": "tsc",
-  	"format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-  	"lint": "tslint -p tsconfig.json",
   	"test": "jest --config jestconfig.json",
-  	"ready": "yarn test && yarn lint && yarn format && yarn build"
     },
-    "test": "jest --config jestconfig.json",
     "devDependencies": {
   	"@types/jest": "^24.0.11",
   	"jest": "^24.5.0",
