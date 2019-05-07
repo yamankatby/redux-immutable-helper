@@ -1,4 +1,4 @@
-export interface IArray<T> {
+export interface ArrayPublicAPI<T> {
   push: (...elements: T[]) => T[];
   unshift: (...elements: T[]) => T[];
   pop: (count?: number) => T[];
