@@ -9,10 +9,14 @@ const getIndex = <T>(source: T[], index: IIndex<T>): number => {
     return source.findIndex(index);
   }
 
-  throw new Error("Look's like your index nor number neither function.");
+  throw new Error('Look\'s like your index nor number neither function.');
 };
 
 const array = <T>(source: T[]): IArray<T> => {
+  if (!Array.isArray(source)) {
+    new TypeError(`Look's like that your source type isn't array.`);
+  }
+
   const push = (...elements: T[]): T[] => {
     return [...source, ...elements];
   };

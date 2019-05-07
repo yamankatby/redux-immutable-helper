@@ -14,6 +14,10 @@ const getTarget = <T>(target: ITarget<T>, prevSource: T): T => {
 };
 
 const object = <T>(source: T): IObject<T> => {
+  if (typeof source !== 'object') {
+    new TypeError(`Look's like that your source type isn't array.`);
+  }
+
   const update = (target: ITarget<T>): T => {
     return { ...source, ...getTarget(target, source) };
   };
