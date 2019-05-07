@@ -1,4 +1,4 @@
-export interface ArrayPublicAPI<T> {
+export interface ArrayAPI<T> {
   push: (...elements: T[]) => T[];
   unshift: (...elements: T[]) => T[];
   pop: (count?: number) => T[];

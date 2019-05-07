@@ -1,6 +1,6 @@
 // created with ❤ by Yaman Katby at 25 Mar 2019.
 
-import { CallbackFn, PredicateFn } from './utilities/types';
+import { ArrayAPI, CallbackFn, PredicateFn } from './utilities/types';
 import { indexify } from './utilities/utilities';
 
 export const push = <T>(source: T[], ...elements: T[]): T[] => {
@@ -45,7 +45,7 @@ export const remove = <T>(source: T[], index: number | PredicateFn<T>): T[] => {
   return [...source.slice(0, indexer), ...source.slice(indexer + 1)];
 };
 
-const array = <T>(source: T[]) => {
+const array = <T>(source: T[]): ArrayAPI<T> => {
   if (!Array.isArray(source)) {
     new TypeError(`Look's like that your source type isn't array.`);
   }
