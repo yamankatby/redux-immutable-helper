@@ -1,104 +1,194 @@
 // created with ❤ by Yaman Katby at 25 Mar 2019.
 
 import { array } from '../src';
+import { deepFreeze } from '../src/utilities';
 
-test('array.push()', () => {
-  const arrayBefore = [1, 2, 3];
-  const arrayAfter = [1, 2, 3, 4, 5];
+it('can add new element to the end of the array', () => {
+  const source = [1, 2, 3];
+  const target = [1, 2, 3, 4, 5];
 
-  Object.freeze(arrayBefore);
-
+  deepFreeze(source);
   expect(
-    array(arrayBefore).push(4, 5),
-  ).toEqual(arrayAfter);
+    array(source).push(4, 5),
+  ).toEqual(target);
 });
 
-test('array.unshift()', () => {
-  const arrayBefore = [1, 2, 3];
-  const arrayAfter = [0, 1, 2, 3];
+it('can add multi elements to the end of the array', () => {
+  const source = [1, 2, 3];
+  const target = [1, 2, 3, 4, 5, 6, 7];
 
-  Object.freeze(arrayBefore);
-
+  deepFreeze(source);
   expect(
-    array(arrayBefore).unshift(0),
-  ).toEqual(arrayAfter);
+    array(source).push(4, 5, 6, 7),
+  ).toEqual(target);
 });
 
-test('array.pop()', () => {
-  const arrayBefore = [1, 2, 3];
-  const arrayAfter = [1, 2];
+it('can add new element to the beginning of the array', () => {
+  const source = [1, 2, 3];
+  const target = [0, 1, 2, 3];
 
-  Object.freeze(arrayBefore);
-
+  deepFreeze(source);
   expect(
-    array(arrayBefore).pop(),
-  ).toEqual(arrayAfter);
+    array(source).unshift(0),
+  ).toEqual(target);
 });
 
-test('array.shift()', () => {
-  const arrayBefore = [1, 2, 3];
-  const arrayAfter = [2, 3];
+it('can add multi elements to the beginning of the array', () => {
+  const source = [1, 2, 3];
+  const target = [-2, -1, 0, 1, 2, 3];
 
-  Object.freeze(arrayBefore);
-
+  deepFreeze(source);
   expect(
-    array(arrayBefore).shift(),
-  ).toEqual(arrayAfter);
+    array(source).unshift(-2, -1, 0),
+  ).toEqual(target);
 });
 
-test('array.concat()', () => {
-  const arrayBefore = [1, 2, 3];
-  const arrayAfter = [1, 2, 3, 4, 5, 6];
-  const concatArray = [4, 5, 6];
+it('can remove element form the end of the array', () => {
+  const source = [1, 2, 3];
+  const target = [1, 2];
 
-  Object.freeze(arrayBefore);
-  Object.freeze(concatArray);
-
+  deepFreeze(source);
   expect(
-    array(arrayBefore).concat(concatArray),
-  ).toEqual(arrayAfter);
+    array(source).pop(),
+  ).toEqual(target);
 });
 
-test('array.replace()', () => {
-  const arrayBefore = [1, 2, 3];
-  const arrayAfter = [1, 2, 4];
+it('can remove multi elements form the end of the array', () => {
+  const source = [1, 2, 3];
+  const target = [1];
 
-  Object.freeze(arrayBefore);
-
+  deepFreeze(source);
   expect(
-    array(arrayBefore).replace((number) => number === 3, 4),
-  ).toEqual(arrayAfter);
+    array(source).pop(2),
+  ).toEqual(target);
 });
 
-test('array.remove()', () => {
-  const arrayBefore = [1, 2, 3];
-  const arrayAfter = [1, 2];
+it('can remove element from the beginning of the array', () => {
+  const source = [1, 2, 3];
+  const target = [2, 3];
 
-  Object.freeze(arrayBefore);
-
+  deepFreeze(source);
   expect(
-    array(arrayBefore).remove((number) => number === 3),
-  ).toEqual(arrayAfter);
+    array(source).shift(),
+  ).toEqual(target);
 });
 
-test('array.insertAfter()', () => {
-  const arrayBefore = [1, 2, 4];
-  const arrayAfter = [1, 2, 3, 4];
+it('can remove multi elements from the beginning of the array', () => {
+  const source = [1, 2, 3];
+  const target = [3];
 
-  Object.freeze(arrayBefore);
-
+  deepFreeze(source);
   expect(
-    array(arrayBefore).insertAfter((number) => number === 2, 3),
-  ).toEqual(arrayAfter);
+    array(source).shift(2),
+  ).toEqual(target);
 });
 
-test('array.insertBefore()', () => {
-  const arrayBefore = [1, 2, 4];
-  const arrayAfter = [1, 2, 3, 4];
+it('can concat tow arrays together', () => {
+  const source = [1, 2, 3];
+  const target = [1, 2, 3, 4, 5, 6];
 
-  Object.freeze(arrayBefore);
-
+  deepFreeze(source);
   expect(
-    array(arrayBefore).insertBefore((number) => number === 4, 3),
-  ).toEqual(arrayAfter);
+    array(source).concat([4, 5, 6]),
+  ).toEqual(target);
+});
+
+it('can replace an element with another by explicit index and explicit element', () => {
+  const source = [1, 2, 3];
+  const target = [1, 2, 4];
+
+  deepFreeze(source);
+  expect(
+    array(source).replace(2, 4),
+  ).toEqual(target);
+});
+
+it('can replace an element with another by implicit index and explicit element', () => {
+  const source = [1, 2, 3];
+  const target = [1, 2, 4];
+
+  deepFreeze(source);
+  expect(
+    array(source).replace((element => element === 3), 4),
+  ).toEqual(target);
+});
+
+it('can replace an element with another by explicit index and implicit element', () => {
+  const source = [1, 2, 3];
+  const target = [1, 2, 4];
+
+  deepFreeze(source);
+  expect(
+    array(source).replace(2, prevElement => prevElement + 1),
+  ).toEqual(target);
+});
+
+it('can replace an element with another by implicit index and implicit element', () => {
+  const source = [1, 2, 3];
+  const target = [1, 2, 4];
+
+  deepFreeze(source);
+  expect(
+    array(source).replace(element => element === 3, prevElement => prevElement + 1),
+  ).toEqual(target);
+});
+
+it('can insert an element after another element by explicit index', () => {
+  const source = [1, 2, 4];
+  const target = [1, 2, 3, 4];
+
+  deepFreeze(source);
+  expect(
+    array(source).insertAfter(1, 3),
+  ).toEqual(target);
+});
+
+it('can insert an element after another element by implicit index', () => {
+  const source = [1, 2, 4];
+  const target = [1, 2, 3, 4];
+
+  deepFreeze(source);
+  expect(
+    array(source).insertAfter((number) => number === 2, 3),
+  ).toEqual(target);
+});
+
+it('can insert element before another element by explicit index', () => {
+  const source = [1, 2, 4];
+  const target = [1, 2, 3, 4];
+
+  deepFreeze(source);
+  expect(
+    array(source).insertBefore(2, 3),
+  ).toEqual(target);
+});
+
+it('can insert element before another element by implicit index', () => {
+  const source = [1, 2, 4];
+  const target = [1, 2, 3, 4];
+
+  deepFreeze(source);
+  expect(
+    array(source).insertBefore((number) => number === 4, 3),
+  ).toEqual(target);
+});
+
+it('can remove element from the array by explicit index', () => {
+  const source = [1, 2, 3];
+  const target = [1, 2];
+
+  deepFreeze(source);
+  expect(
+    array(source).remove(2),
+  ).toEqual(target);
+});
+
+it('can remove element from the array by implicit index', () => {
+  const source = [1, 2, 3];
+  const target = [1, 2];
+
+  deepFreeze(source);
+  expect(
+    array(source).remove((number) => number === 3),
+  ).toEqual(target);
 });

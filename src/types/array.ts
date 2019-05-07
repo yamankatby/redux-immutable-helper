@@ -4,7 +4,7 @@ export interface IArray<T> {
   pop: (count?: number) => T[];
   shift: (count?: number) => T[];
   concat: (target: T[]) => T[];
-  replace: (index: IIndex<T>, element: T | ((prevElement: T) => T) | any) => T[];
+  replace: (index: IIndex<T>, element: T | ((prevElement: T) => T)) => T[];
   insertAfter: (index: IIndex<T>, element: T) => T[];
   insertBefore: (index: IIndex<T>, element: T) => T[];
   remove: (index: IIndex<T>) => T[];
