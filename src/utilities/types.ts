@@ -10,6 +10,7 @@ export interface ArrayAPI<T> {
 	insertAfter: (index: number | PredicateFn<T>, element: T) => ArrayAPI<T>;
 	insertBefore: (index: number | PredicateFn<T>, element: T) => ArrayAPI<T>;
 	remove: (index: number | PredicateFn<T>) => ArrayAPI<T>;
+	toArray: () => T[];
 }
 
 export type PredicateFn<T> = (element: T) => boolean;
