@@ -1,16 +1,16 @@
 // created with ❤ by Yaman Katby at 25 Mar 2019.
 
-import { CallbackFn, PredicateFn } from './utilities/types';
+import { ArrayAPI, CallbackFn, PredicateFn } from './utilities/types';
 import { indexify } from './utilities/utilities';
 
-export const array = <T>(source: T[]) => {
+export const array = <T>(source: T[]): ArrayAPI<T> => {
 	if (source === undefined || !Array.isArray(source)) {
 		new TypeError(`Looks like the first parameter that you have passed to the array function isn't an array.`);
 	}
 
 	let value: T[] = source.slice();
 
-	const push = (...elements: T[]) => {
+	const push = (...elements: T[]): ArrayAPI<T> => {
 		value = [...value, ...elements];
 		return publicAPI;
 	};

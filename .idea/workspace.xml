@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eab7d507-930c-40d7-9fa1-d6323c500ba5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/redux-immutable-helper.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Untitled-1.code-workspace" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/array.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/array.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utilities/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utilities/utilities.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilities/utilities.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/array.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tests/array.test.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,13 +18,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/array.ts">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="25" lean-forward="true" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
-              <folding>
-                <element signature="e#50#110#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="375">
+              <caret line="25" column="3" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -69,7 +58,6 @@
         <option value="$PROJECT_DIR$/tests/object.prototype.test.ts" />
         <option value="$PROJECT_DIR$/src/x.js" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/prototypes/array.prototype.ts" />
         <option value="$PROJECT_DIR$/src/prototypes/index.ts" />
         <option value="$PROJECT_DIR$/src/prototypes/object.prototype.ts" />
@@ -82,6 +70,7 @@
         <option value="$PROJECT_DIR$/src/utilities/utilities.ts" />
         <option value="$PROJECT_DIR$/src/utilities/types.ts" />
         <option value="$PROJECT_DIR$/src/array.ts" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -110,7 +99,18 @@
             <path>
               <item name="redux-immutable-helper" type="b2602c69:ProjectViewProjectNode" />
               <item name="redux-immutable-helper" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="redux-immutable-helper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="redux-immutable-helper" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="redux-immutable-helper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="redux-immutable-helper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="utilities" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -239,13 +239,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66656000" />
+    <option name="totallyTimeSpent" value="66918000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1377" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24970461" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24970461" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -352,8 +352,6 @@
     <entry file="file://$PROJECT_DIR$/node_modules/deep-freeze/index.js" />
     <entry file="file://$PROJECT_DIR$/lib/object.js" />
     <entry file="file://$PROJECT_DIR$/.prettierrc" />
-    <entry file="file://$PROJECT_DIR$/lib/index.d.ts" />
-    <entry file="file://$PROJECT_DIR$/lib/array.d.ts" />
     <entry file="file://$PROJECT_DIR$/lib/src/array.js" />
     <entry file="file://$PROJECT_DIR$/lib/src/array.d.ts" />
     <entry file="file://$PROJECT_DIR$/lib/types/array.d.ts" />
@@ -364,7 +362,6 @@
     <entry file="file://$PROJECT_DIR$/lib/object.d.ts" />
     <entry file="file://$PROJECT_DIR$/lib/prototypes/object.prototype.d.ts" />
     <entry file="file://$PROJECT_DIR$/tests/object.prototype.test.ts" />
-    <entry file="file://$PROJECT_DIR$/lib/array.js" />
     <entry file="file://$PROJECT_DIR$/src/x.js" />
     <entry file="file://$PROJECT_DIR$/tslint.json" />
     <entry file="file://$PROJECT_DIR$/jestconfig.json">
@@ -378,13 +375,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="36" column="77" selection-start-line="36" selection-start-column="77" selection-end-line="36" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="12" lean-forward="true" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -416,13 +406,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utilities/types.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="41" lean-forward="true" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -430,12 +413,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Untitled-1.code-workspace">
+    <entry file="file://$PROJECT_DIR$/Untitled-1.code-workspace" />
+    <entry file="file://$PROJECT_DIR$/src/utilities/types.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+        <state relative-caret-position="75">
+          <caret line="5" column="41" lean-forward="true" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/array.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/array.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/utilities/types.d.ts">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
@@ -449,11 +453,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/array.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="25" lean-forward="true" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
-          <folding>
-            <element signature="e#50#110#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="225">
+          <caret line="16" column="43" lean-forward="true" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="3" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
         </state>
       </provider>
     </entry>

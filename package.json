@@ -25,7 +25,7 @@
   "lib/**/*"
  ],
  "scripts": {
-  "build": "tsc",
+  "build": "rm  -r ./lib && tsc",
   "test": "jest --config jestconfig.json"
  },
  "devDependencies": {
