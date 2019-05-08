@@ -1,3 +1,5 @@
+// created with ❤ by Yaman Katby at 08 May 2019.
+
 export interface ArrayAPI<T> {
 	push: (...elements: T[]) => ArrayAPI<T>;
 	unshift: (...elements: T[]) => ArrayAPI<T>;
