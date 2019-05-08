@@ -57,24 +57,30 @@ import { array } from "redux-immutable-helper";
 const todoList = (state = [], action) => {
   switch (action.type) {
     case "ADD_TODO":
-      return array(state).push(action.newTodo);
+      return array(state)
+        .push(action.newTodo)
+        .toArray();
     case "UPDATE_TODO":
-      return array(state).replace(
-        todo => todo.id === action.updatedTodo.id,
-        action.updatedTodo
-      );
+      return array(state)
+        .replace(todo => todo.id === action.updatedTodo.id, action.updatedTodo)
+        .toArray();
     case "TOGGLE_TODO":
-      return array(state).replace(
-        todo => todo.id === action.id,
-        prevTodo => ({ ...prevTodo, completed: !prevTodo.completed })
-      );
+      return array(state)
+        .replace(
+          todo => todo.id === action.id,
+          prevTodo => ({ ...prevTodo, completed: !prevTodo.completed })
+        )
+        .toArray();
     case "REMOVE_TODO":
-      return array(state).remove(todo => todo.id === action.id);
+      return array(state)
+        .remove(todo => todo.id === action.id)
+        .toArray();
 
     default:
       return state;
   }
 };
+
 ``` 
 
 If it does make sense for you go up ⭐ me and let's read the documentation.
@@ -95,16 +101,18 @@ yarn add redux-immutable-helper
 
 This is a list of the methods that you can access by calling `array()` function that we provide. 
 
-|                  | Description                                                          | Parameters                                                | Example                            |
-|------------------|----------------------------------------------------------------------|-----------------------------------------------------------|------------------------------------|
-| `push()`         | Adds an element or more to the end of the targeted array.            | ...elements: any[]                                        | array([1, 2, 3]).push(4, 5);       |
-| `unshift()`      | Adds an element or more to the beginning of the targeted array.      | ...elements: any[]                                        | array([3, 4]).unshift(1, 2);       |
-| `pop()`          | Removes an element or more from the end of the targeted array.       | count: number                                             | array([1, 2, 3]).pop(2);           |
-| `shift()`        | Removes an element or more from the beginning of the targeted array. | count: number                                             | array([1, 2, 3]).shift(2);         |
-| `concat()`       | Concats the passed array with the end of the targeted array.         | newArray: any[]                                           | array([1, 2]).concat([3, 4]);      |
-| `insertAfter()`  | Adds an element to the targeted array after the passed index.        | expression: number | ((element) => boolean), element: any | array([1, 3]).insertAfter([0, 2]); |
-| `insertBefore()` | Adds an element to the targeted array before the passed index.       | expression: number | ((element) => boolean), element: any | array([1, 3]).insertBefore(1, 2);  |
-| `remove()`       | Removes an element from the passed index.                            | expression: number | ((element) => boolean)               | array([1, 2, 3]).remove(2);        |
+|                  | description                                                                | parametres                                                                    |
+|------------------|----------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| `push()`         | Adds an element or more to the end of the source array.                    | ...elements: any[]                                                            |
+| `unshift()`      | Adds an element or more to the beginning of the source array.              | ...elements: any[]                                                            |
+| `pop()`          | Removes an element or more from the end of the source array.               | count: number = 1                                                             |
+| `shift()`        | Removes an element or more from the beginning of the source array.         | count: number = 1                                                             |
+| `concat()`       | Concats the passed array with the end of the source array.                 | target: any[]                                                                 |
+| `replace()`      | Replaces an element from the source array with the one that you pass.      | index: number | ((element) => boolean), element: any | ((prevElement) => any) |
+| `insertAfter()`  | Inserts an element to the source array after the index that you pass.      | index: number | ((element) => boolean), element: any                          |
+| `insertBefore()` | Inserts an element to the source array before the index that you pass.     | index: number | ((element) => boolean), element: any                          |
+| `remove()`       | Removes an element from the index the you pass.                            | index: number | ((element) => boolean)                                        |
+| `toArray()`      | Returns the result of the operations those you took over the source array. |                                                                               |
 
 ### push()
 `push()` method like the original `Array.prototype.push()` method helps you to add an element to the end of the array but without mutating the original array. For example: 
@@ -112,126 +120,155 @@ This is a list of the methods that you can access by calling `array()` function 
 import { array } from "redux-immutable-helper";
 
 const list = ["🐼", "🐶", "🐑"];
-const newList = array(list).push("🐈"); // output => ["🐼", "🐶", "🐑", "🐈"];
+const newList = array(list)
+  .push("🐈")
+  .toArray(); // output => ["🐼", "🐶", "🐑", "🐈"];
 ```
 the `newList` variable will contain the new array and the `list` variable will still as it.
 
 
-Also it's allowing you to add multi element to the end of the array by passing them as a separated arguments as following.
+Also it's allowing you to add multi elements to the end of the array by passing them as a separated arguments as following.
 ```js
 const list = ["🐼", "🐶", "🐑"];
-const newList = array(list).push("🐈", "🐓", "🐇"); // output => ["🐼", "🐶", "🐑", "🐈", "🐓", "🐇"];
+const newList = array(list)
+  .push("🐈", "🐓", "🐇")
+  .toArray(); // output => ["🐼", "🐶", "🐑", "🐈", "🐓", "🐇"];
 ```
+
+
 ### unshift()
-
+`unshift()` method works exactly like the `Array.prototype.unshift()` method which can be found inside the original `Array.prototype` object which allows you to add an element to the beginning of the array but without mutating the original array. For example:
 ```js
 import { array } from "redux-immutable-helper";
 
 const list = ["🐶", "🐑", "🐈"];
-const newList = array(list).unshift("🐼"); // output => ["🐼", "🐶", "🐑", "🐈"];
+const newList = array(list)
+  .unshift("🐼")
+  .toArray(); // output => ["🐼", "🐶", "🐑", "🐈"];
 ```
 
-**Also you can pass multiple element:**
-
+As the `push()` method also the `unshift()` method also allowing you to add multi elements to the beginning of the array by passing the elements as separated arguments as following.
 ```js
 const list = ["🐶", "🐑", "🐈"];
-const newList = array(list).unshift("🐼", "🐓", "🐇"); // output => ["🐼", "🐓", "🐇", "🐶", "🐑", "🐈"];
+const newList = array(list)
+  .unshift("🐼", "🐓", "🐇")
+  .toArray(); // output => ["🐼", "🐓", "🐇", "🐶", "🐑", "🐈"];
 ```
+
+
 ### pop()
-
+As the `Array.prototype.pop()` method `pop()` method allows you to remove an element from the end of the array but without mutating the original array. For example:
 ```js
 import { array } from "redux-immutable-helper";
 
 const list = ["🐼", "🐶", "🐑"];
-const newList = array(list).pop(); // output => ["🐼", "🐶"];
+const newList = array(list)
+  .pop()
+  .toArray(); // output => ["🐼", "🐶"];
 ```
 
-**Also you can pass it a count**
-
+Also you can remove multi elements from the of end the array by passing the count of the elements those you want to remove as following.
 ```js
 const list = ["🐼", "🐶", "🐑"];
-const newList = array(list).pop(2); // output => ["🐼"];
+const newList = array(list)
+  .pop(2)
+  .toArray(); // output => ["🐼"];
 ```
+
 
 ### shift()
-
+As the `Array.prototype.shift()` method `shift()` method allows you to remove an element from the beginning of the array but without mutating the original array. For example:
 ```js
 import { array } from "redux-immutable-helper";
 
 const list = ["🐼", "🐶", "🐑"];
-const newList = array(list).shift(); // output => ["🐶", "🐑"];
+const newList = array(list)
+  .shift()
+  .toArray(); // output => ["🐶", "🐑"];
 ```
 
-**Also you can pass it a count**
-
+Also you can remove multi elements from the beginning of the array by passing the count of the elements those you want to remove as following.
 ```js
 const list = ["🐼", "🐶", "🐑"];
-const newList = array(list).shift(2); // output => ["🐑"];
+const newList = array(list)
+  .shift(2)
+  .toArray(); // output => ["🐑"];
 ```
+
 
 ### replace()
-
+`replace()` method unlike the other methods has no synonym in the `Array.prototype` object. `replace()` method helps you to replace an element in the array with another one that you pass. `replace()` method takes two arguments. First argument the index of the element that you want to replace and the second argument the new element. For example:
 ```js
 import { array } from "redux-immutable-helper";
 
 const list = ["🐼", "🐶", "🐑"];
-const newList = array(list).replace(0, "🐈"); // output => ["🐈", "🐶", "🐑"];
+const newList = array(list)
+  .replace(0, "🐈")
+  .toArray(); // output => ["🐈", "🐶", "🐑"];
 ```
 
-**Also you can it a expression**
-
+If you don't know the exact index of the element that you want to replace you can pass a predicate function as the first argument. The predicate funtion is a function to execute on each value in the array until the function returns true, indicating that the satisfying element was found. The `replace()` method will use the index of that element as the `index` argument.
 ```js
 const list = ["🐼", "🐶", "🐑"];
-const newList = array(list).replace(animal => animal === "🐼", "🐈"); // output => ["🐈", "🐶", "🐑"];
+const newList = array(list)
+  .replace(animal => animal === "🐼", "🐈")
+  .toArray(); // output => ["🐈", "🐶", "🐑"];
 ```
+
+If you calculating your new element with an expensive operation and you want to use the previous element to calculate the new one you can pass a callback function as the second argument to the `replace()` method. The callback function is a function takes the previous element as the first argument and returns the new element.
+```js
+const list = ["🐼", "🐶", "🐑"];
+const newList = array(list)
+  .replace(animal => animal === "🐼", prevAnimal => prevAnimal + "🐈")
+  .toArray(); // output => ["🐼🐈", "🐶", "🐑"];
+
+```
+
 
 ### insertAfter()
-
 ```js
 import { array } from "redux-immutable-helper";
 
 const list = ["🐼", "🐶", "🐑"];
-const newList = array(list).insertAfter(1, "🐈"); // output => ["🐼", "🐶", "🐈", "🐑"];
+const newList = array(list).insertAfter(1, "🐈").toArray(); // output => ["🐼", "🐶", "🐈", "🐑"];
 ```
 
 **Also you can it a expression**
-
 ```js
 const list = ["🐼", "🐶", "🐑"];
-const newList = array(list).insertAfter(animal => animal === "🐶", "🐈"); // output => ["🐼", "🐶", 🐈", "🐑"];
+const newList = array(list).insertAfter(animal => animal === "🐶", "🐈").toArray(); // output => ["🐼", "🐶", 🐈", "🐑"];
 ```
+
 
 ### insertBefore()
-
 ```js
 import { array } from "redux-immutable-helper";
 
 const list = ["🐼", "🐶", "🐑"];
-const newList = array(list).insertBefore(1, "🐈"); // output => ["🐼", "🐈", "🐶", "🐑"];
+const newList = array(list).insertBefore(1, "🐈").toArray(); // output => ["🐼", "🐈", "🐶", "🐑"];
 ```
 
 **Also you can it a expression**
-
 ```js
 const list = ["🐼", "🐶", "🐑"];
-const newList = array(list).insertBefore(animal => animal === "🐶", "🐈"); // output => ["🐼", 🐈", "🐶", "🐑"];
+const newList = array(list).insertBefore(animal => animal === "🐶", "🐈").toArray(); // output => ["🐼", 🐈", "🐶", "🐑"];
 ```
+
 
 ### remove()
-
 ```js
 import { array } from "redux-immutable-helper";
 
 const list = ["🐼", "🐶", "🐑"];
-const newList = array(list).remove(2); // output => ["🐼", "🐶"];
+const newList = array(list).remove(2).toArray(); // output => ["🐼", "🐶"];
 ```
 
 **Also you can it a expression**
-
 ```js
 const list = ["🐼", "🐶", "🐑"];
-const newList = array(list).remove(animal => animal === "🐑"); // output => ["🐼", "🐶"];
+const newList = array(list).remove(animal => animal === "🐑").toArray(); // output => ["🐼", "🐶"];
 ```
+
 
 ## Contributing
 We would love to have community contributions and support! A few areas where could use help right now:
