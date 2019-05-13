@@ -17,23 +17,23 @@ export interface ArrayAPI<T> {
 
 	replace(index: number, element: T): ArrayAPI<T>;
 
-	replace(index: number, callbackfn: CallbackFn<T>): ArrayAPI<T>;
+	replace(index: number, callbackfn: ((prevElement: T) => T)): ArrayAPI<T>;
 
-	replace(predicate: PredicateFn<T>, element: T): ArrayAPI<T>;
+	replace(predicate: ((element: T) => boolean), element: T): ArrayAPI<T>;
 
-	replace(predicate: PredicateFn<T>, callbackfn: CallbackFn<T>): ArrayAPI<T>;
+	replace(predicate: ((element: T) => boolean), callbackfn: ((prevElement: T) => T)): ArrayAPI<T>;
 
 	insertAfter(index: number, element: T): ArrayAPI<T>;
 
-	insertAfter(predicate: PredicateFn<T>, element: T): ArrayAPI<T>;
+	insertAfter(predicate: ((element: T) => boolean), element: T): ArrayAPI<T>;
 
 	insertBefore(index: number, element: T): ArrayAPI<T>;
 
-	insertBefore(predicate: PredicateFn<T>, element: T): ArrayAPI<T>;
+	insertBefore(predicate: ((element: T) => boolean), element: T): ArrayAPI<T>;
 
 	remove(index: number): ArrayAPI<T>;
 
-	remove(predicate: PredicateFn<T>): ArrayAPI<T>;
+	remove(predicate: ((element: T) => boolean)): ArrayAPI<T>;
 
 	toArray(): T[];
 }
