@@ -10,7 +10,7 @@ export const array = <T>(source: T[]): ArrayAPI<T> => {
 
 	let value: T[] = source.slice();
 
-	const push = (...elements: T[]): ArrayAPI<T> => {
+	const push = (...elements: T[]) => {
 		value = [...value, ...elements];
 		return publicAPI;
 	};

@@ -2,20 +2,22 @@
 
 import { PredicateFn } from './types';
 
-export const deepFreeze = (source: any) => {
+export const forEachKey = <T>(source: T, callbackFn: (key: keyof T, value: any, index: number) => void) => {
+	Object.getOwnPropertyNames(source).forEach((_, index) => {
+		const key = _ as keyof T;
+		callbackFn(key, source[key], index);
+	});
+};
+
+export const deepFreeze = <T>(source: T) => {
 	if (typeof source !== 'object' || source === null) {
 		return;
 	}
 
 	Object.freeze(source);
 
-	Object.getOwnPropertyNames(source).forEach(key => {
-		if (
-			source.hasOwnProperty(key) &&
-			typeof source[key] === 'object' &&
-			source[key] !== null &&
-			!Object.isFrozen(source[key])
-		) {
+	forEachKey(source, (key, value) => {
+		if (source.hasOwnProperty(key) && typeof value === 'object' && value !== null && !Object.isFrozen(value)) {
 			deepFreeze(source[key]);
 		}
 	});
