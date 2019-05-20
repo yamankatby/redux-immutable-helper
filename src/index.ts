@@ -3,4 +3,4 @@
 export { array } from './array';
 
 export { ArrayAPI, CallbackFn, PredicateFn } from './utilities/types';
-export { deepFreeze, forEachKey, findIndex, findIndexes } from './utilities/utilities';
+export { deepFreeze, deepClone, forEachKey, findIndex, findIndexes } from './utilities/utilities';

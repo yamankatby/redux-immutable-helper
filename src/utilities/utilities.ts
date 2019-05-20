@@ -13,12 +13,32 @@ export const deepFreeze = <T>(source: T) => {
 	}
 
 	Object.freeze(source);
-
 	forEachKey(source, (key, value) => {
 		if (source.hasOwnProperty(key) && typeof value === 'object' && value !== null && !Object.isFrozen(value)) {
 			deepFreeze(source[key]);
 		}
 	});
+};
+
+export const deepClone = <T>(source: T): T => {
+	if (typeof source !== 'object' || source === null) {
+		return source;
+	}
+
+	let value;
+	if (Array.isArray(source)) {
+		value = [];
+		source.forEach((element) => {
+			value.push(deepClone(element));
+		});
+	} else {
+		value = {};
+		forEachKey(source, (key, value) => {
+			value[key] = deepClone(value);
+		});
+	}
+
+	return value as T;
 };
 
 export const findIndex = <T>(source: T[], index: number | ((element: T) => boolean)) => {
