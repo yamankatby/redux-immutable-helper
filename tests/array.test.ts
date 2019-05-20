@@ -229,3 +229,27 @@ it('can remove element from the array by implicit index', () => {
 			.toArray(),
 	).toEqual(target);
 });
+
+it('can remove list of elements from the array by explicit indexList', () => {
+	const source = [1, 2, 3, 3, 4, 5];
+	const target = [1, 2, 4, 5];
+
+	deepFreeze(source);
+	expect(
+		array(source)
+			.removeAll([2, 3])
+			.toArray(),
+	).toEqual(target);
+});
+
+it('can remove list of elements from the array by implicit indexList', () => {
+	const source = [1, 2, 3, 3, 4, 5];
+	const target = [1, 2, 4, 5];
+
+	deepFreeze(source);
+	expect(
+		array(source)
+			.removeAll((element) => element === 3)
+			.toArray(),
+	).toEqual(target);
+});

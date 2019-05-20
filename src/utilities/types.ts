@@ -35,6 +35,10 @@ export interface ArrayAPI<T> {
 
 	remove(predicate: ((element: T) => boolean)): ArrayAPI<T>;
 
+	removeAll(indexes: number[]): ArrayAPI<T>;
+
+	removeAll(predicate: ((element: T) => boolean)): ArrayAPI<T>;
+
 	toArray(): T[];
 }
 

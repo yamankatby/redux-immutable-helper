@@ -1,64 +1,84 @@
 // created with ❤ by Yaman Katby at 25 Mar 2019.
 
 import { ArrayAPI, CallbackFn, PredicateFn } from './utilities/types';
-import { indexify } from './utilities/utilities';
+import { findIndex, findIndexes } from './utilities/utilities';
 
-export const array = <T>(source: T[]): ArrayAPI<T> => {
+export const array = <T = any>(source: T[]): ArrayAPI<T> => {
 	if (source === undefined || !Array.isArray(source)) {
 		new TypeError(`Looks like the first parameter that you have passed to the array function isn't an array.`);
 	}
 
-	let value: T[] = source.slice();
+	let result: T[] = source.slice();
 
 	const push = (...elements: T[]) => {
-		value = [...value, ...elements];
+		result = [...result, ...elements];
 		return publicAPI;
 	};
 	const unshift = (...elements: T[]) => {
-		value = [...elements, ...value];
+		result = [...elements, ...result];
 		return publicAPI;
 	};
 	const pop = (count: number = 1) => {
-		value = value.slice(0, value.length - count);
+		result = result.slice(0, result.length - count);
 		return publicAPI;
 	};
 	const shift = (count: number = 1) => {
-		value = value.slice(count);
+		result = result.slice(count);
 		return publicAPI;
 	};
 	const concat = (target: T[]) => {
-		value = [...value, ...target];
+		result = [...result, ...target];
 		return publicAPI;
 	};
 	const replace = (index: number | PredicateFn<T>, element: T | CallbackFn<T>) => {
-		const indexer = indexify(value, index);
-		const target = typeof element === 'function' ? element.call(undefined, value[indexer]) : element;
+		const indexer = findIndex(result, index);
+		const target = typeof element === 'function' ? element.call(undefined, result[indexer]) : element;
 
-		value = [...value.slice(0, indexer), target, ...value.slice(indexer + 1)];
+		result = [...result.slice(0, indexer), target, ...result.slice(indexer + 1)];
 		return publicAPI;
 	};
 	const insertAfter = (index: number | PredicateFn<T>, element: T) => {
-		const indexer = indexify(value, index);
-		value = [...value.slice(0, indexer + 1), element, ...value.slice(indexer + 1)];
+		const indexer = findIndex(result, index);
+		result = [...result.slice(0, indexer + 1), element, ...result.slice(indexer + 1)];
 
 		return publicAPI;
 	};
 	const insertBefore = (index: number | PredicateFn<T>, element: T) => {
-		const indexer = indexify(value, index);
-		value = [...value.slice(0, indexer), element, ...value.slice(indexer)];
+		const indexer = findIndex(result, index);
+		result = [...result.slice(0, indexer), element, ...result.slice(indexer)];
 
 		return publicAPI;
 	};
 	const remove = (index: number | PredicateFn<T>) => {
-		const indexer = indexify(value, index);
-		value = [...value.slice(0, indexer), ...value.slice(indexer + 1)];
+		const indexer = findIndex(result, index);
+		result = [...result.slice(0, indexer), ...result.slice(indexer + 1)];
+
+		return publicAPI;
+	};
+	const removeAll = (indexList: number[] | PredicateFn<T>) => {
+		const indexer = findIndexes(result, indexList);
+		indexer.forEach((index, i) => {
+			result = [...result.slice(0, index - i), ...result.slice(index - i + 1)];
+		});
 
 		return publicAPI;
 	};
 	const toArray = (): T[] => {
-		return value;
+		return result;
 	};
 
-	const publicAPI = { push, unshift, pop, shift, concat, replace, insertAfter, insertBefore, remove, toArray };
+	const publicAPI = {
+		push,
+		unshift,
+		pop,
+		shift,
+		concat,
+		replace,
+		insertAfter,
+		insertBefore,
+		remove,
+		removeAll,
+		toArray,
+	};
 	return publicAPI;
 };

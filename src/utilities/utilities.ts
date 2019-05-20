@@ -1,7 +1,5 @@
 // created with ❤ by Yaman Katby at 08 May 2019.
 
-import { PredicateFn } from './types';
-
 export const forEachKey = <T>(source: T, callbackFn: (key: keyof T, value: any, index: number) => void) => {
 	Object.getOwnPropertyNames(source).forEach((_, index) => {
 		const key = _ as keyof T;
@@ -23,10 +21,29 @@ export const deepFreeze = <T>(source: T) => {
 	});
 };
 
-export const indexify = <T>(source: T[], index: number | PredicateFn<T>): number => {
+export const findIndex = <T>(source: T[], index: number | ((element: T) => boolean)) => {
 	if (typeof index !== 'number' && typeof index !== 'function') {
-		throw new Error('Look\'s like your index nor number neither function.');
+		throw new TypeError('Look\'s like your index nor number neither function.');
 	}
 
-	return typeof index === 'number' ? index : source.findIndex(index);
+	return typeof index === 'function' ? source.findIndex(index) : index;
+};
+
+export const findIndexes = <T>(source: T[], indexes: number[] | ((element: T) => boolean)) => {
+	if (typeof indexes !== 'function' && !Array.isArray(indexes)) {
+		throw new TypeError('Look\'s like your index nor array of numbers neither function.');
+	}
+
+	if (typeof indexes === 'function') {
+		const indexList: number[] = [];
+		source.forEach(((value, index) => {
+			if (indexes(value)) {
+				indexList.push(index);
+			}
+		}));
+
+		return indexList;
+	}
+
+	return indexes;
 };
