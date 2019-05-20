@@ -56,11 +56,11 @@ export const findIndexes = <T>(source: T[], indexes: number[] | ((element: T) =>
 
 	if (typeof indexes === 'function') {
 		const indexList: number[] = [];
-		source.forEach(((value, index) => {
+		source.forEach((value, index) => {
 			if (indexes(value)) {
 				indexList.push(index);
 			}
-		}));
+		});
 
 		return indexList;
 	}

@@ -55,10 +55,10 @@ export const array = <T = any>(source: T[]): ArrayAPI<T> => {
 
 		return publicAPI;
 	};
-	const removeAll = (indexList: number[] | PredicateFn<T>) => {
-		const indexer = findIndexes(result, indexList);
-		indexer.forEach((index, i) => {
-			result = [...result.slice(0, index - i), ...result.slice(index - i + 1)];
+	const removeAll = (indexes: number[] | PredicateFn<T>) => {
+		const indexer = findIndexes(result, indexes).sort().reverse();
+		indexer.forEach((index) => {
+			result = [...result.slice(0, index), ...result.slice(index + 1)];
 		});
 
 		return publicAPI;
