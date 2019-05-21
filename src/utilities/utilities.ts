@@ -1,6 +1,6 @@
 // created with ❤ by Yaman Katby at 08 May 2019.
 
-export const forEachKey = <T>(source: T, callbackFn: (key: keyof T, value: any, index: number) => void) => {
+export const forIn = <T>(source: T, callbackFn: (key: keyof T, value: any, index: number) => void) => {
 	Object.getOwnPropertyNames(source).forEach((_, index) => {
 		const key = _ as keyof T;
 		callbackFn(key, source[key], index);
@@ -13,32 +13,32 @@ export const deepFreeze = <T>(source: T) => {
 	}
 
 	Object.freeze(source);
-	forEachKey(source, (key, value) => {
+	forIn(source, (key, value) => {
 		if (source.hasOwnProperty(key) && typeof value === 'object' && value !== null && !Object.isFrozen(value)) {
 			deepFreeze(source[key]);
 		}
 	});
 };
 
-export const deepClone = <T>(source: T): T => {
+export const deepClone = <T>(source: T) => {
 	if (typeof source !== 'object' || source === null) {
 		return source;
 	}
 
-	let value;
+	let result: any;
 	if (Array.isArray(source)) {
-		value = [];
-		source.forEach((element) => {
-			value.push(deepClone(element));
+		result = [];
+		source.forEach(element => {
+			result.push(deepClone(element));
 		});
 	} else {
-		value = {};
-		forEachKey(source, (key, value) => {
-			value[key] = deepClone(value);
+		result = {};
+		forIn(source, (key, value) => {
+			result[key] = deepClone(value);
 		});
 	}
 
-	return value as T;
+	return result as T;
 };
 
 export const findIndex = <T>(source: T[], index: number | ((element: T) => boolean)) => {
