@@ -170,6 +170,18 @@ it('can insert an element after another element by explicit index', () => {
 	).toEqual(target);
 });
 
+it('can insert multi elements after another element by explicit index', () => {
+	const source = [1, 2, 4];
+	const target = [1, 2, 3, 3, 3, 4];
+
+	deepFreeze(source);
+	expect(
+		array(source)
+			.insertAfter(1, 3, 3, 3)
+			.toArray(),
+	).toEqual(target);
+});
+
 it('can insert an element after another element by implicit index', () => {
 	const source = [1, 2, 4];
 	const target = [1, 2, 3, 4];
@@ -178,6 +190,18 @@ it('can insert an element after another element by implicit index', () => {
 	expect(
 		array(source)
 			.insertAfter(number => number === 2, 3)
+			.toArray(),
+	).toEqual(target);
+});
+
+it('can insert multi elements after another element by implicit index', () => {
+	const source = [1, 2, 4];
+	const target = [1, 2, 3, 3, 3, 4];
+
+	deepFreeze(source);
+	expect(
+		array(source)
+			.insertAfter(number => number === 2, 3, 3, 3)
 			.toArray(),
 	).toEqual(target);
 });
@@ -194,6 +218,18 @@ it('can insert element before another element by explicit index', () => {
 	).toEqual(target);
 });
 
+it('can insert multi elements before another element by explicit index', () => {
+	const source = [1, 2, 4];
+	const target = [1, 2, 3, 3, 3, 4];
+
+	deepFreeze(source);
+	expect(
+		array(source)
+			.insertBefore(2, 3, 3, 3)
+			.toArray(),
+	).toEqual(target);
+});
+
 it('can insert element before another element by implicit index', () => {
 	const source = [1, 2, 4];
 	const target = [1, 2, 3, 4];
@@ -202,6 +238,18 @@ it('can insert element before another element by implicit index', () => {
 	expect(
 		array(source)
 			.insertBefore(number => number === 4, 3)
+			.toArray(),
+	).toEqual(target);
+});
+
+it('can insert multi elements before another element by implicit index', () => {
+	const source = [1, 2, 4];
+	const target = [1, 2, 3, 3, 3, 4];
+
+	deepFreeze(source);
+	expect(
+		array(source)
+			.insertBefore(number => number === 4, 3, 3, 3)
 			.toArray(),
 	).toEqual(target);
 });

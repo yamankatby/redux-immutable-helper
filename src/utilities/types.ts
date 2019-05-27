@@ -25,11 +25,19 @@ export interface ArrayAPI<T> {
 
 	insertAfter(index: number, element: T): ArrayAPI<T>;
 
+	insertAfter(index: number, ...elements: T[]): ArrayAPI<T>;
+
 	insertAfter(predicate: ((element: T) => boolean), element: T): ArrayAPI<T>;
+
+	insertAfter(predicate: ((element: T) => boolean), ...elements: T[]): ArrayAPI<T>;
 
 	insertBefore(index: number, element: T): ArrayAPI<T>;
 
+	insertBefore(index: number, ...elements: T[]): ArrayAPI<T>;
+
 	insertBefore(predicate: ((element: T) => boolean), element: T): ArrayAPI<T>;
+
+	insertBefore(predicate: ((element: T) => boolean), ...elements: T[]): ArrayAPI<T>;
 
 	remove(index: number): ArrayAPI<T>;
 

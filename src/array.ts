@@ -37,15 +37,15 @@ export const array = <T = any>(source: T[]): ArrayAPI<T> => {
 		result = [...result.slice(0, indexer), target, ...result.slice(indexer + 1)];
 		return publicAPI;
 	};
-	const insertAfter = (index: number | PredicateFn<T>, element: T) => {
+	const insertAfter = (index: number | PredicateFn<T>, ...elements: T[]) => {
 		const indexer = findIndex(result, index);
-		result = [...result.slice(0, indexer + 1), element, ...result.slice(indexer + 1)];
+		result = [...result.slice(0, indexer + 1), ...elements, ...result.slice(indexer + 1)];
 
 		return publicAPI;
 	};
-	const insertBefore = (index: number | PredicateFn<T>, element: T) => {
+	const insertBefore = (index: number | PredicateFn<T>, ...elements: T[]) => {
 		const indexer = findIndex(result, index);
-		result = [...result.slice(0, indexer), element, ...result.slice(indexer)];
+		result = [...result.slice(0, indexer), ...elements, ...result.slice(indexer)];
 
 		return publicAPI;
 	};
@@ -82,3 +82,9 @@ export const array = <T = any>(source: T[]): ArrayAPI<T> => {
 	};
 	return publicAPI;
 };
+
+array([1, 2, 3])
+	.insertAfter(element => element === 3, 4, 5)
+	.insertBefore(element => element === 1, 0)
+	.push(1,)
+	.toArray();
