@@ -1,10 +1,19 @@
 // created with ❤ by Yaman Katby at 08 May 2019.
 
-export const forIn = <T>(source: T, callbackFn: (key: keyof T, value: any, index: number) => void) => {
+export const forIn = <S>(source: S, callbackFn: (key: keyof S, value: S[keyof S], index: number) => void) => {
 	Object.getOwnPropertyNames(source).forEach((_, index) => {
-		const key = _ as keyof T;
+		const key = _ as keyof S;
 		callbackFn(key, source[key], index);
 	});
+};
+
+export const mapIn = <S, R>(source: S, predicate: (key: keyof S, value: S[keyof S], index: number) => R) => {
+	const result: R[] = [];
+	forIn(source, ((key, value, index) => {
+		result.push(predicate(key, value, index));
+	}));
+
+	return result;
 };
 
 export const deepFreeze = <T>(source: T) => {

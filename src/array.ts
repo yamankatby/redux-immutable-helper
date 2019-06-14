@@ -1,7 +1,56 @@
 // created with ❤ by Yaman Katby at 25 Mar 2019.
 
-import { ArrayAPI, CallbackFn, PredicateFn } from './utilities/types';
-import { findIndex, findIndexes } from './utilities/utilities';
+import { findIndex, findIndexes } from './utilities';
+
+interface ArrayAPI<T> {
+	push(...elements: T[]): ArrayAPI<T>;
+
+	unshift(...elements: T[]): ArrayAPI<T>;
+
+	pop(): ArrayAPI<T>;
+
+	pop(count: number): ArrayAPI<T>;
+
+	shift(): ArrayAPI<T>;
+
+	shift(count: number): ArrayAPI<T>;
+
+	concat(target: T[]): ArrayAPI<T>;
+
+	replace(index: number, element: T): ArrayAPI<T>;
+
+	replace(index: number, callbackfn: ((prevElement: T) => T)): ArrayAPI<T>;
+
+	replace(predicate: ((element: T) => boolean), element: T): ArrayAPI<T>;
+
+	replace(predicate: ((element: T) => boolean), callbackfn: ((prevElement: T) => T)): ArrayAPI<T>;
+
+	insertAfter(index: number, element: T): ArrayAPI<T>;
+
+	insertAfter(index: number, ...elements: T[]): ArrayAPI<T>;
+
+	insertAfter(predicate: ((element: T) => boolean), element: T): ArrayAPI<T>;
+
+	insertAfter(predicate: ((element: T) => boolean), ...elements: T[]): ArrayAPI<T>;
+
+	insertBefore(index: number, element: T): ArrayAPI<T>;
+
+	insertBefore(index: number, ...elements: T[]): ArrayAPI<T>;
+
+	insertBefore(predicate: ((element: T) => boolean), element: T): ArrayAPI<T>;
+
+	insertBefore(predicate: ((element: T) => boolean), ...elements: T[]): ArrayAPI<T>;
+
+	remove(index: number): ArrayAPI<T>;
+
+	remove(predicate: ((element: T) => boolean)): ArrayAPI<T>;
+
+	removeAll(indexes: number[]): ArrayAPI<T>;
+
+	removeAll(predicate: ((element: T) => boolean)): ArrayAPI<T>;
+
+	toArray(): T[];
+}
 
 export const array = <T = any>(source: T[]): ArrayAPI<T> => {
 	if (source === undefined || !Array.isArray(source)) {
@@ -30,32 +79,32 @@ export const array = <T = any>(source: T[]): ArrayAPI<T> => {
 		result = [...result, ...target];
 		return publicAPI;
 	};
-	const replace = (index: number | PredicateFn<T>, element: T | CallbackFn<T>) => {
+	const replace = (index: number | ((element: T) => boolean), element: T | ((prevElement: T) => T)) => {
 		const indexer = findIndex(result, index);
 		const target = typeof element === 'function' ? element.call(undefined, result[indexer]) : element;
 
 		result = [...result.slice(0, indexer), target, ...result.slice(indexer + 1)];
 		return publicAPI;
 	};
-	const insertAfter = (index: number | PredicateFn<T>, ...elements: T[]) => {
+	const insertAfter = (index: number | ((element: T) => boolean), ...elements: T[]) => {
 		const indexer = findIndex(result, index);
 		result = [...result.slice(0, indexer + 1), ...elements, ...result.slice(indexer + 1)];
 
 		return publicAPI;
 	};
-	const insertBefore = (index: number | PredicateFn<T>, ...elements: T[]) => {
+	const insertBefore = (index: number | ((element: T) => boolean), ...elements: T[]) => {
 		const indexer = findIndex(result, index);
 		result = [...result.slice(0, indexer), ...elements, ...result.slice(indexer)];
 
 		return publicAPI;
 	};
-	const remove = (index: number | PredicateFn<T>) => {
+	const remove = (index: number | ((element: T) => boolean)) => {
 		const indexer = findIndex(result, index);
 		result = [...result.slice(0, indexer), ...result.slice(indexer + 1)];
 
 		return publicAPI;
 	};
-	const removeAll = (indexes: number[] | PredicateFn<T>) => {
+	const removeAll = (indexes: number[] | ((element: T) => boolean)) => {
 		const indexer = findIndexes(result, indexes).sort().reverse();
 		indexer.forEach((index) => {
 			result = [...result.slice(0, index), ...result.slice(index + 1)];
@@ -82,9 +131,3 @@ export const array = <T = any>(source: T[]): ArrayAPI<T> => {
 	};
 	return publicAPI;
 };
-
-array([1, 2, 3])
-	.insertAfter(element => element === 3, 4, 5)
-	.insertBefore(element => element === 1, 0)
-	.push(1,)
-	.toArray();
